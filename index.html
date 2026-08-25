@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday Robert</title>
+  <meta name="description" content="HAPPY BIRTHDAY - ENJOY YOUR DAY - ROBERT">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Happy Birthday Robert">
+  <meta property="og:title" content="Happy Birthday Robert">
+  <meta property="og:description" content="HAPPY BIRTHDAY - ENJOY YOUR DAY - ROBERT">
+  <meta property="og:url" content="https://jujubeans85.github.io/">
+  <meta property="og:image" content="https://jujubeans85.github.io/og.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Happy Birthday Robert">
+  <meta name="twitter:image" content="https://jujubeans85.github.io/og.jpg">
+  <link rel="image_src" href="https://jujubeans85.github.io/og.jpg">
+  <style>
+    :root{--bg:#0b0b0c;--fg:#f4efe4;--orange:#e85d04}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:Arial Narrow,Arial,sans-serif;overflow:hidden}
+    .banner{position:absolute;left:0;right:0;z-index:20;overflow:hidden;white-space:nowrap;letter-spacing:.28em;text-transform:uppercase;font-weight:700}
+    .top{top:0;padding:.55rem 0;background:repeating-linear-gradient(90deg,#0b0b0c 0 28px,#e85d04 28px 56px)}
+    .bot{bottom:0;padding:.4rem 0;color:#0b0b0c;background:repeating-linear-gradient(90deg,#e85d04 0 22px,#0b0b0c 22px 44px)}
+    .track{display:flex;width:max-content;animation:m 22s linear infinite}
+    .bot .track{animation-direction:reverse}
+    .chunk{padding:0 1.25rem}
+    @keyframes m{to{transform:translateX(-50%)}}
+    .tv{position:absolute;inset:0;display:grid;place-items:center;padding:3.2rem 1rem 3rem}
+    .frame{width:min(92vw,560px);aspect-ratio:1080/1056;border-radius:22px;overflow:hidden;box-shadow:0 0 0 3px var(--orange),0 0 40px rgba(232,93,4,.45);background:#000}
+    video,img{width:100%;height:100%;object-fit:cover;display:block}
+    .end{display:none;position:absolute;inset:0;z-index:18;flex-direction:column;align-items:center;justify-content:center;background:repeating-linear-gradient(90deg,#0b0b0c 0 36px,#e85d04 36px 72px)}
+    .end.on{display:flex}
+    .line{font-family:Georgia,serif;font-style:italic;font-size:clamp(2rem,7vw,3.6rem);margin:0}
+    .who{position:absolute;bottom:4.5rem;letter-spacing:.22em;font-size:.75rem}
+  </style>
+</head>
+<body>
+  <div class="banner top"><div class="track" id="t1"></div></div>
+  <div class="banner bot"><div class="track" id="t2"></div></div>
+  <div class="tv"><div class="frame"><video id="v" src="splash.mp4" poster="og.jpg" playsinline muted autoplay></video></div></div>
+  <div class="end" id="end"><p class="line">enjoy your day</p><p class="who">Adam</p></div>
+  <script>
+    const line="HAPPY BIRTHDAY  -  ENJOY YOUR DAY  -  ROBERT  -  ";
+    const html=Array.from({length:8},()=>`<span class="chunk">${line}</span>`).join("");
+    t1.innerHTML=html+html; t2.innerHTML=html+html;
+    const v=document.getElementById("v");
+    const go=()=>end.classList.add("on");
+    v.addEventListener("ended",go); setTimeout(go,8000);
+    addEventListener("pointerdown",()=>{v.muted=false;v.play().catch(()=>{});},{once:true});
+    v.play().catch(()=>{});
+  </script>
+</body>
+</html>
