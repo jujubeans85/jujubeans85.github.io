@@ -1,0 +1,4 @@
+:root{--juice-identity:#F72D8A;--juice-identity-ink:#FFFFFF}
+.juice-identity-mark{width:48px;height:48px;border-radius:14px;object-fit:contain;vertical-align:middle;flex-shrink:0}
+h1 .juice-identity-mark{margin-right:12px}
+html,body{background-color:#170815}body{background:radial-gradient(circle at 80% 18%,#F72D8A33,transparent 55%),#170815}.card{border-color:#F72D8A66}.heart{color:#F72D8A}.primary{background:linear-gradient(90deg,#F72D8A,#AE2676)}

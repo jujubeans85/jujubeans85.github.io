@@ -1,0 +1,23 @@
+{
+  "name": "Clobo",
+  "short_name": "Clobo",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#F72D8A",
+  "background_color": "#F72D8A",
+  "icons": [
+    {
+      "src": "identity/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "identity/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
