@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-16",
+  "updated": "2026-09-18",
   "scope": "43-repository approved portfolio; progress is per action, not a blanket completion claim",
   "repositories": [
     {
@@ -125,8 +125,35 @@
       "repo_url": "https://github.com/jujubeans85/COCKATOO",
       "stage": 4,
       "approval": "approved 2026-09-16",
-      "status": "pending implementation",
-      "audit_baseline": "8ff4a90d712aebaa74d5dc447441833123a8513d"
+      "status": "batch 02 source repairs published to main; broader consolidation and physical-device gates remain open",
+      "audit_baseline": "8ff4a90d712aebaa74d5dc447441833123a8513d",
+      "batch": "02",
+      "commit": "69fc0f89386a9c5858674d5ff4349499f41d64e9",
+      "rollback_commit": "8ff4a90d712aebaa74d5dc447441833123a8513d",
+      "rollback_branch": "rollback/batch-02-2026-09-18",
+      "completed_actions": [
+        "Corrected case-sensitive map/media/fallback paths.",
+        "Scoped cache ownership and navigation fallback; explicit update activation.",
+        "Added reproducible offline/update regression tests."
+      ],
+      "remaining_actions": [
+        "Physical iOS offline save, narration and installed-app update check.",
+        "Full original stage-4 acceptance review beyond these repairs."
+      ],
+      "verification": {
+        "automated": "node --test tests/batch-02.test.cjs passed; changed scripts parse",
+        "preservation": "All pre-existing blobs outside the change list retain their hashes",
+        "physical_device": "not verified",
+        "deployment": {
+          "id": 35359348104,
+          "name": "pages build and deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/jujubeans85/COCKATOO/actions/runs/35359348104",
+          "sha": "69fc0f89386a9c5858674d5ff4349499f41d64e9"
+        }
+      },
+      "batch_report": "portfolio/batch-02.md"
     },
     {
       "id": "R13",
@@ -329,8 +356,35 @@
       "repo_url": "https://github.com/jujubeans85/Juicemoments",
       "stage": 5,
       "approval": "approved 2026-09-16",
-      "status": "pending implementation",
-      "audit_baseline": "58149a88a9a20803b111d3f75c3a21d41ee02f4e"
+      "status": "batch 02 source repairs published to main; broader consolidation and physical-device gates remain open",
+      "audit_baseline": "58149a88a9a20803b111d3f75c3a21d41ee02f4e",
+      "batch": "02",
+      "commit": "536f785034e766883f264c0f8b7fe134c1d90d14",
+      "rollback_commit": "58149a88a9a20803b111d3f75c3a21d41ee02f4e",
+      "rollback_branch": "rollback/batch-02-2026-09-18",
+      "completed_actions": [
+        "Repaired repository-relative Chloe shortcut.",
+        "Guarded registry selection, destination protocol, haptics and duplicate activation.",
+        "Preserved recipient data and birthday routes; added regression tests."
+      ],
+      "remaining_actions": [
+        "Physical iOS gift interaction check without redeeming gifts.",
+        "Further shared gift-layer integration remains pending."
+      ],
+      "verification": {
+        "automated": "node --test tests/batch-02.test.cjs passed; changed scripts parse",
+        "preservation": "All pre-existing blobs outside the change list retain their hashes",
+        "physical_device": "not verified",
+        "deployment": {
+          "id": 35359352134,
+          "name": "pages build and deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/jujubeans85/Juicemoments/actions/runs/35359352134",
+          "sha": "536f785034e766883f264c0f8b7fe134c1d90d14"
+        }
+      },
+      "batch_report": "portfolio/batch-02.md"
     },
     {
       "id": "R32",
@@ -413,9 +467,38 @@
       "repo_url": "https://github.com/jujubeans85/personal-sonic-postcards",
       "stage": 5,
       "approval": "approved 2026-09-16",
-      "status": "pending implementation",
+      "status": "batch 02 source repairs published to main; broader consolidation and physical-device gates remain open",
       "audit_baseline": "07394c491d2fe61d1f5a0d5c444a2dea6bb50079",
-      "retirement_gate": "Preserve unique source/data and incoming URLs; verify replacement and active hosting before retirement."
+      "retirement_gate": "Preserve unique source/data and incoming URLs; verify replacement and active hosting before retirement.",
+      "batch": "02",
+      "commit": "c84176153d583b21cbf52658e5da3677daeb3167",
+      "rollback_commit": "07394c491d2fe61d1f5a0d5c444a2dea6bb50079",
+      "rollback_branch": "rollback/batch-02-2026-09-18",
+      "completed_actions": [
+        "Shared NFC transport consumed by main Cinema demo and ESM manager.",
+        "Bounded and cleaned up scans; corrected NFC write API; explicit simulation marker.",
+        "Preserved all audio engines, V4 demo and profile routes; added regression tests."
+      ],
+      "remaining_actions": [
+        "Historical root NFC manager remains unmigrated and is not used by active demo.",
+        "Other audio/shared-component consolidation remains pending.",
+        "Physical NFC and iOS verification; Mac runtime work separate.",
+        "Voice Control integration, True Stem and Performance Capture not implemented in this batch."
+      ],
+      "verification": {
+        "automated": "node --test tests/batch-02.test.cjs passed; changed scripts parse",
+        "preservation": "All pre-existing blobs outside the change list retain their hashes",
+        "physical_device": "not verified",
+        "deployment": {
+          "id": 35359359081,
+          "name": "pages build and deployment",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/jujubeans85/personal-sonic-postcards/actions/runs/35359359081",
+          "sha": "c84176153d583b21cbf52658e5da3677daeb3167"
+        }
+      },
+      "batch_report": "portfolio/batch-02.md"
     },
     {
       "id": "R40",
