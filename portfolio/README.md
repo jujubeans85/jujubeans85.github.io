@@ -2,7 +2,7 @@
 
 The owner approved all rows in the 15 September decision pack on 16 September 2026, superseding the blank returned PDF. Work runs in substantial related batches without repeated routine approval prompts. Preservation and verification remain part of execution.
 
-`registry.json` is the portfolio decision and progress index. It records all 43 repositories. `batch-01.md` and `batch-02.md` record shipped changes and rollback baselines. A proposed merge/archive is not complete merely because it was approved.
+`registry.json` is the portfolio decision and progress index. It records all 43 repositories. `batch-01.md`, `batch-02.md` and `batch-03.md` record shipped changes and rollback baselines. A proposed merge/archive is not complete merely because it was approved.
 
 ## Architecture
 
