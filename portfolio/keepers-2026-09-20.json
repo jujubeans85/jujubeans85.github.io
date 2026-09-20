@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-20",
+  "approval": "User: all screenshot projects are keepers; ship missing GitHub source",
+  "scope": "IMG_2686,2687,2688,2689,2691,2692,2693,2694,2695,2696,2698",
+  "items": [
+    {
+      "name": "JuiceWeaver",
+      "screenshots": [
+        "IMG_2686",
+        "IMG_2695",
+        "IMG_2696"
+      ],
+      "repository": "JuiceWeaver",
+      "status": "source present",
+      "path": "index.html"
+    },
+    {
+      "name": "JUICE Play / BOSS",
+      "screenshots": [
+        "IMG_2687"
+      ],
+      "repository": "JUICE-PLAY-CLOCK",
+      "status": "source present",
+      "path": "index.html"
+    },
+    {
+      "name": "juice fonts",
+      "screenshots": [
+        "IMG_2688"
+      ],
+      "repository": "FONT_JUICE",
+      "status": "source present",
+      "path": "index.html"
+    },
+    {
+      "name": "CRATE JUICE CANS",
+      "screenshots": [
+        "IMG_2689"
+      ],
+      "repository": "chlomim",
+      "status": "source present",
+      "path": "studio/index.html"
+    },
+    {
+      "name": "Wareamah Walk",
+      "screenshots": [
+        "IMG_2694"
+      ],
+      "repository": "COCKATOO",
+      "status": "source present",
+      "path": "index.html"
+    },
+    {
+      "name": "JUICE Reader",
+      "screenshots": [
+        "IMG_2691"
+      ],
+      "repository": "JUICE",
+      "path": "READER",
+      "status": "source imported and all 17 blobs verified",
+      "commit": "cb16ad00fe030f0eb2734717ada1caa85cd6ba6c",
+      "rollback_branch": "rollback/reader-import-2026-09-20",
+      "checks": "JavaScript syntax and existing site-tools regression suite passed; no new CI run; physical-device and Mac installation unverified",
+      "privacy": "Private sample prompt replaced with neutral text; kit regenerated. Live private Site unchanged."
+    },
+    {
+      "name": "Chloe's 10-Tap Journey",
+      "status": "KEEP; source unresolved, not shipped",
+      "needed": "Original live URL or source HTML/ZIP",
+      "limitation": "No exact source match found in inspected default-branch trees, candidate source files, GitHub code search or Library search. This does not prove absence in unindexed branches or archives."
+    },
+    {
+      "name": "My Little Man / 21",
+      "status": "KEEP; source unresolved, not shipped",
+      "needed": "Original live URL or source HTML/ZIP",
+      "limitation": "No exact source match found in inspected default-branch trees, candidate source files, GitHub code search or Library search. This does not prove absence in unindexed branches or archives."
+    },
+    {
+      "name": "Launchpad Mini MK2 + Djay Pro guide",
+      "status": "KEEP; source unresolved, not shipped",
+      "needed": "Original live URL or source HTML/ZIP",
+      "limitation": "No exact source match found in inspected default-branch trees, candidate source files, GitHub code search or Library search. This does not prove absence in unindexed branches or archives."
+    }
+  ]
+}

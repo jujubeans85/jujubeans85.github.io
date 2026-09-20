@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "scope": "43-repository approved portfolio; progress is per action, not a blanket completion claim",
   "repositories": [
     {
@@ -657,6 +657,13 @@
       "retirement_gate": "Preserve unique source/data and incoming URLs; verify replacement and active hosting before retirement.",
       "commit": "e906cdebde35a37abcbb113f30e2698276f016fe",
       "rollback_commit": "e5b46161a941ace8981c4c1d0b6a2d6a54f64778"
+    }
+  ],
+  "keeper_audits": [
+    {
+      "date": "2026-09-20",
+      "report": "portfolio/keepers-2026-09-20.json",
+      "status": "5 existing, 1 imported, 3 source-unresolved; all KEEP"
     }
   ]
 }
