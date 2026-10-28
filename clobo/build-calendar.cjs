@@ -1,5 +1,5 @@
 'use strict';
-// Regenerate both deliverables after editing daily-messages.js.
+// Regenerate calendar, message sheet and date-keyed SMS feed after editing daily-messages.js.
 const fs = require('node:fs');
 const path = require('node:path');
 const data = require('./daily-messages.js');
@@ -22,10 +22,12 @@ const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Love Dad//CHLO 28 Days
   'BEGIN:DAYLIGHT','DTSTART:20261004T020000','TZOFFSETFROM:+1000','TZOFFSETTO:+1100','TZNAME:AEDT','END:DAYLIGHT',
   'BEGIN:STANDARD','DTSTART:20270404T030000','TZOFFSETFROM:+1100','TZOFFSETTO:+1000','TZNAME:AEST','END:STANDARD','END:VTIMEZONE'];
 let sheet = '# CHLO · 28 daily notes from Dad ♡\n\n' + data.tagline + '\n\n30 October–26 November 2026 · 8:00 am Australia/Sydney\n\nFinal day: Friday 27 November 2026, 5:00 pm Sydney.\n\n10 checked odd facts + 18 original Dad quotes. Every note ends with LOVE DAD ♡.\n\n';
+const smsByDate = {};
 for (let i=0; i<data.messages.length; i++) {
   const message = data.messages[i], days = 28-i, key = daily.keyForDay(daily.startDay+i), date = key.replaceAll('-','');
   const summary = `${days} ${days === 1 ? 'day' : 'days'} ♡ ${message.text} — Dad`;
   const note = `CHLO · ${days} ${days === 1 ? 'day' : 'days'} to go\n\n${message.text}\n\n${data.signoff}\n${data.tagline}\n\n${data.siteUrl}` + (message.source ? `\n\nFact source: ${message.source.label}\n${message.source.url}` : '\n\nOriginal words from Dad.');
+  smsByDate[key] = `${days} ${days === 1 ? 'day' : 'days'} to go ♡\n\n${message.text}\n\n${data.signoff}`;
   const hour = String(data.alertHour).padStart(2,'0');
   lines.push('BEGIN:VEVENT',`UID:chlo-countdown-2026-${date}@jujubeans85.github.io`,'DTSTAMP:20261028T080000Z','SEQUENCE:0',
     `DTSTART;TZID=${data.timezone}:${date}T${hour}0000`,`DTEND;TZID=${data.timezone}:${date}T${hour}0100`,
@@ -37,4 +39,5 @@ for (let i=0; i<data.messages.length; i++) {
 lines.push('END:VCALENDAR');
 fs.writeFileSync(path.join(__dirname,'chlo-28-days.ics'), lines.map(fold).join('\r\n') + '\r\n');
 fs.writeFileSync(path.join(__dirname,'chlo-28-messages.md'), sheet);
-console.log('Built 28 calendar events with alarms and the complete message sheet.');
+fs.writeFileSync(path.join(__dirname,'chlo-sms-by-date.json'), JSON.stringify(smsByDate, null, 2) + '\n');
+console.log('Built date-keyed SMS feed, 28 calendar events with alarms and the complete message sheet.');
