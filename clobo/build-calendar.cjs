@@ -21,7 +21,7 @@ const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Love Dad//CHLO 28 Days
   'BEGIN:VTIMEZONE','TZID:Australia/Sydney','X-LIC-LOCATION:Australia/Sydney',
   'BEGIN:DAYLIGHT','DTSTART:20261004T020000','TZOFFSETFROM:+1000','TZOFFSETTO:+1100','TZNAME:AEDT','END:DAYLIGHT',
   'BEGIN:STANDARD','DTSTART:20270404T030000','TZOFFSETFROM:+1100','TZOFFSETTO:+1000','TZNAME:AEST','END:STANDARD','END:VTIMEZONE'];
-let sheet = '# CHLO · 28 daily notes from Dad ♡\n\n' + data.tagline + '\n\n30 October–26 November 2026 · 8:00 am Australia/Sydney\n\nFinal day: Friday 27 November 2026, 5:00 pm Sydney.\n\n10 checked odd facts + 18 original Dad quotes. Every note ends with LOVE DAD ♡.\n\n';
+let sheet = '# CHLO · 28 daily notes from Dad ♡\n\n' + data.tagline + '\n\n30 October–26 November 2026 · 8:00 am Australia/Sydney\n\nFinal day: Friday 27 November 2026, 5:00 pm Sydney.\n\n10 checked odd facts + 18 original Dad quotes. Every note ends with LUV YA !😀💛.\n\n';
 const smsByDate = {};
 for (let i=0; i<data.messages.length; i++) {
   const message = data.messages[i], days = 28-i, key = daily.keyForDay(daily.startDay+i), date = key.replaceAll('-','');

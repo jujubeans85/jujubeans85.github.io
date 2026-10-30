@@ -2,7 +2,7 @@
 (function(root,factory){var data=factory();if(typeof module==='object'&&module.exports)module.exports=data;else root.CLOBO_DAILY=data;})(typeof globalThis!=='undefined'?globalThis:this,function(){return {
   "title": "CHLO · Love Dad ♡",
   "tagline": "Same heart. Brighter days.",
-  "signoff": "LOVE DAD ♡",
+  "signoff": "LUV YA !😀💛",
   "timezone": "Australia/Sydney",
   "graduationAt": "2026-11-27T17:00:00+11:00",
   "alertHour": 8,
