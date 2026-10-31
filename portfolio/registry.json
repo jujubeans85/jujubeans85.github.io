@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-20",
-  "scope": "43-repository approved portfolio; progress is per action, not a blanket completion claim",
+  "updated": "2026-11-01",
+  "scope": "46-repository observed portfolio: 45 public identities and one restricted slot; earlier approvals apply only to their recorded actions",
   "repositories": [
     {
       "id": "R01",
@@ -657,6 +657,40 @@
       "retirement_gate": "Preserve unique source/data and incoming URLs; verify replacement and active hosting before retirement.",
       "commit": "e906cdebde35a37abcbb113f30e2698276f016fe",
       "rollback_commit": "e5b46161a941ace8981c4c1d0b6a2d6a54f64778"
+    },
+    {
+      "id": "R44",
+      "name": "RESTRICTED-R44",
+      "visibility": "restricted",
+      "action": "REVIEW_REQUIRED",
+      "status": "Private identity and evidence retained in the existing private monthly audit record; no public source or route details",
+      "recommendation": "KEEP / verify Mac integration through an actual connected runtime",
+      "approval": "No new destructive action approved"
+    },
+    {
+      "id": "R45",
+      "name": "AFTERWORLDS",
+      "repo_url": "https://github.com/jujubeans85/AFTERWORLDS",
+      "action": "REVIEW_REQUIRED",
+      "status": "Active separate research atlas; open draft PR #1 and successful associated Actions evidence observed 2026-11-01",
+      "recommendation": "KEEP / separate AI-geography research atlas",
+      "approval": "No new destructive action approved",
+      "evidence": [
+        "https://github.com/jujubeans85/AFTERWORLDS/pull/1"
+      ]
+    },
+    {
+      "id": "R46",
+      "name": "disco-globe",
+      "repo_url": "https://github.com/jujubeans85/disco-globe",
+      "action": "REVIEW_REQUIRED",
+      "status": "Music-globe implementation with successful Pages workflow evidence; relationship to JUICE atlas requires review; existing source and routes retained",
+      "recommendation": "Consider prototype/visual-source relationship feeding JUICE/CRATE_MAP/atlas; preserve history and routes until successor verification",
+      "approval": "No retirement or cutover approved",
+      "evidence": [
+        "https://github.com/jujubeans85/disco-globe/actions",
+        "https://github.com/jujubeans85/JUICE/tree/main/CRATE_MAP/atlas"
+      ]
     }
   ],
   "keeper_audits": [
@@ -665,5 +699,13 @@
       "report": "portfolio/keepers-2026-09-20.json",
       "status": "5 existing, 1 imported, 3 source-unresolved; all KEEP"
     }
-  ]
+  ],
+  "maintenance": {
+    "source": "https://github.com/jujubeans85/JUICE/tree/main/MAINTENANCE",
+    "baseline_date": "2026-11-01",
+    "public_count": 45,
+    "restricted_count": 1,
+    "baseline_status": "Proposed read-only audit framework; activation requires reviewed merge; workflow enablement and runtime route coverage remain explicit",
+    "report": "https://github.com/jujubeans85/JUICE/blob/main/MAINTENANCE/baseline/report.md"
+  }
 }
