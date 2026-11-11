@@ -2,3 +2,57 @@
 /* Keep the first action close to the top on a phone. */
 @media(max-width:599px){main{padding-top:17px}.hero{padding:20px 0 16px}.hero h1{font-size:34px}.hero img{max-width:122px}.tagline{font-size:12px;margin-top:10px}.eyebrow{font-size:8px;letter-spacing:1.1px}.countdown{padding:14px 18px}.countdown strong{font-size:36px}.section-title{margin-top:23px}}
 @media(max-width:360px){.hero h1{font-size:29px}.hero img{width:29%}.progress-caption span{font-size:9px}}
+
+/* BOSS portrait / tinted glass. Opaque fallbacks keep controls readable. */
+:root{color-scheme:dark;--ink:#fff9ff;--muted:#e4dce9;--mint:#c5ffe2;--paper:#201629;--purple:#f4c4ff;--line:#ffffff38}
+body{background:#201629;isolation:isolate}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:url("./boss-wallpaper.webp") center 38%/cover no-repeat}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,#170f2540,#170f2555 45%,#170f2575)}
+main{padding-top:max(17px,env(safe-area-inset-top))}
+header,.hero,.countdown,.task,.loose-ends,.wins,footer,.checklist>.section-title{
+ background:rgba(27,18,39,.86);border:1px solid #ffffff38;
+ box-shadow:inset 0 1px 0 #ffffff16,0 8px 28px #10051b30;
+ -webkit-backdrop-filter:blur(14px) saturate(135%);backdrop-filter:blur(14px) saturate(135%)
+}
+header{padding:12px 15px;border-radius:20px}
+.hero{padding:19px 16px;margin:12px 0;border-radius:24px;background:rgba(36,20,48,.78)}
+.hero h1 span{color:#f7c7ff}.hero img{filter:drop-shadow(0 8px 10px #0005)}
+.eyebrow{color:#f6d4fb}.tagline,.hint{color:var(--muted)}
+.pill{background:#ffffff16;border-color:#ffffff70;color:#fff9ff}
+.countdown{background:rgba(17,43,44,.90);box-shadow:inset 0 1px 0 #c5ffe230,0 8px 28px #10051b30}
+.target button,.progress-caption span{color:#e1f0eb}
+.checklist>.section-title{padding:12px 14px;border-radius:15px;margin:18px 0 12px}
+.task{transition:border-color .2s,background-color .2s}
+.task[data-status=done]{background:rgba(16,54,44,.92);border-color:#b4efc980}
+.task[data-status=pending]{background:rgba(57,40,27,.92);border-color:#f5d18b80}
+.check{border-color:#ddd0e5;background:#ffffff0d}
+.task[data-status=done] .check{background:#bff7d3;color:#173b2c;border-color:#bff7d3}
+.task[data-status=pending] .check{background:#ffe1a1;color:#47300a;border-color:#ffe1a1}
+.state-select{background:#49394f;color:#fff6ff;border:1px solid #ffffff40}
+.task[data-status=done] .state-select{background:#244e3c;color:#d7ffe6}
+.task[data-status=pending] .state-select{background:#624920;color:#fff0cf}
+.remind,.notes-toggle,.add-item,.reminder-label{color:#f4c4ff}
+.notes-toggle{color:#eee1f2}
+.notes-panel{background:#110a1b30}
+textarea,input[type=text],input[type=date],input[type=datetime-local]{background:rgba(19,13,30,.88);color:#fff9ff;border-color:#a99bb8}
+textarea::placeholder,input::placeholder{color:#c6b9d1;opacity:1}
+.item-row{background:#ffffff09;border-color:#ffffff38}
+.loose-ends{background:rgba(46,26,66,.90);border-style:dashed;border-color:#dbb8ef}
+.loose-title .notes-toggle{color:#f3d7ff}
+.wins{padding:0 15px 17px;border-radius:20px;margin-top:18px}
+.wins .section-title{margin-top:16px}
+#win-count{background:#51365f;color:#f9deff}
+#achievements p{background:#ffffff0c;color:#eee3f2}
+footer{border-radius:18px;padding:6px 15px 14px}
+a{color:#f4c4ff}
+.footer-actions button,.file-button,.secondary{background:#ffffff10;color:#fff9ff;border-color:#c6b2d2}
+dialog{background:rgba(31,20,43,.96);border:1px solid #c6b2d2;-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
+dialog::backdrop{background:#10051b8c}
+.primary{background:#d7fca4;color:#203019;box-shadow:0 3px 0 #7b9961}
+#toast{background:#251632;color:#fff9ff}
+button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #dbffa3;outline-offset:3px}
+button:active{transform:translateY(1px)}
+@media(hover:hover){button:hover{filter:brightness(1.12)}.task:hover{border-color:#f4c4ff9c}}
+@media(min-width:900px){body::before{background-size:auto 100%;background-color:#291a32}main{max-width:620px}}
+@media(max-width:360px){.hero{padding:16px 12px}.hero h1{font-size:27px}.eyebrow{font-size:7px}.section-title>span{font-size:10px}}
+@media(prefers-reduced-transparency:reduce){header,.hero,.countdown,.task,.loose-ends,.wins,footer,.checklist>.section-title,dialog{background:#251b30;backdrop-filter:none;-webkit-backdrop-filter:none}}
