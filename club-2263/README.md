@@ -22,11 +22,41 @@ restyled into one candlelit, oxblood and aged-brass visual treatment.
 - `club2263.ics`: start-only calendar event; no invented end time.
 - `asset-provenance.json`: original filenames and image-edit prompts.
 - `tools/render-invitation.py`: reproducible vector invitation authoring.
+- `gift/`: a phone-first wrapped invitation, with sealed link-preview artwork.
 
 The countdown stops at zero, changes to “Midnight has arrived”, then uses an
 archive message after 24 hours. Gallery photographs open in a keyboard-accessible
-dialog. The share button invokes the device share sheet, with clipboard and
-selectable-link fallbacks. Nothing is sent automatically.
+dialog. The share button shares the wrapped gift URL through the device share
+sheet, with clipboard and selectable-link fallbacks. Nothing is sent automatically.
+
+## Wrapped gift for Messages
+
+Share <https://jujubeans85.github.io/club-2263/gift/>.
+
+The recipient sees sealed burgundy-and-brass artwork in a supported link preview.
+Opening the link presents a wax seal: tap to loosen the ribbon, then tap the unwrap
+button or swipe sideways to reveal the invitation. The reveal links to the exact
+live invitation at <https://x-club-2263.netlify.app/invite.svg>.
+
+There is a direct-open alternative, keyboard focus handling, reduced-motion
+support, an image-error fallback, and a no-JavaScript link. Each visit starts
+wrapped; the replay button resets the experience. There are no accounts,
+cookies, recipient tracking, payments or dependencies on external scripts.
+
+Messages does not run custom JavaScript inside an ordinary link-preview bubble.
+The interactive unwrapping happens on the web page after the recipient opens it.
+No app installation is required. Preview rendering depends on the receiving
+Messages app. Browser testing covered the mobile layout, seal, reveal, skip,
+replay and share fallback; no physical iPhone Messages session was tested.
+
+Apple reference: <https://developer.apple.com/documentation/technotes/tn3156-create-rich-previews-for-messages>.
+
+The wrapping is a visual surprise, not authentication or a one-time access token.
+Sharing only the gift URL keeps the event details out of the message caption.
+
+Preview assets in `gift/`: `gift-preview.png` / `.svg` are 1200 × 630;
+`gift-preview-vertical.png` / `.svg` are 1080 × 1350. SVG type is outlined and the
+artwork is self-contained. The raster apple-touch icon is 180 × 180.
 
 ## Source and GitHub Pages
 
@@ -39,26 +69,35 @@ Existing repository files outside this directory are preserved. The event date
 is fixed; update the HTML, countdown instant, calendar, invitation generator and
 social metadata together before reusing this for another night.
 
-## Netlify continuation
+## Netlify deployment
 
-An empty project named **club-2263** was created in the existing account.
-**Its files have not been deployed yet.**
+The existing **x-club-2263** site is live at
+<https://x-club-2263.netlify.app/>. Its original uploaded deployment was verified
+on 15 November 2026 (deploy `6af9909c7c365b19556b47c4`). It is a drop deployment,
+so a GitHub commit does not automatically update it.
 
-Project dashboard: <https://app.netlify.com/projects/club-2263>
+Project dashboard: <https://app.netlify.com/projects/x-club-2263>
 
-For a manual deployment, unzip `CLUB_2263_Netlify.zip`, open this existing
-project's **Deploys** page, and upload the extracted `CLUB_2263_Netlify` folder
-to the deploy dropzone. `index.html` is directly inside that folder. No install,
-build command or server is needed. `_headers` carries the static response rules.
+**The new gift route still needs the updated bundle uploaded to Netlify.**
+This workspace's Netlify dashboard access is blocked and its connected tools
+do not expose deploy uploads. The GitHub Pages gift is available independently.
+
+For a manual update, unzip `CLUB_2263_Unwrap_Netlify.zip`, open this existing
+project's **Deploys** page, and upload the extracted `CLUB_2263_Unwrap_Netlify`
+folder to the deploy dropzone. This is the complete site, including the gift;
+`index.html` is directly inside that folder. No install, build command or server
+is needed. `_headers` carries the static response rules. The Netlify bundle's
+canonical and Open Graph URLs already target `x-club-2263.netlify.app`.
 Official instructions: <https://docs.netlify.com/deploy/create-deploys/#drag-and-drop>.
 
 For Git continuous deployment, connect this GitHub repository, use branch `main`,
 base directory `club-2263`, and publish directory `.`. Leave the build command
 empty. The supplied `netlify.toml` defines the static publish directory.
 
-Once Netlify is live, change canonical/OG URLs and the invitation's printed link
-if Netlify should become the primary address. Keep the working GitHub URL until
-that switch is verified.
+After the new Netlify upload, the gift route will be `/gift/` on that site. Keep
+sharing the working GitHub Pages gift until the Netlify gift route is verified.
+For a future switch to continuous deployment, update source canonical/OG URLs
+to the chosen primary host. The share controls use the current host at runtime.
 
 `.netlify/` and environment files are ignored by Git. No credentials are included.
 
@@ -76,6 +115,10 @@ in the script. The exported website needs none of those packages to run.
 ![Desktop layout](docs/preview-desktop.jpg)
 
 [Phone layout](docs/preview-mobile.jpg)
+
+[Wrapped gift on a phone layout](docs/gift-wrapped-phone.jpg)
+
+[Revealed invitation on a phone layout](docs/gift-reveal-phone.jpg)
 
 ## Creative references
 

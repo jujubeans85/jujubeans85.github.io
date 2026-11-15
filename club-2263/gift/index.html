@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#130b10">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="A little something, just for you. Tap to unwrap your invitation.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CLUB 2263">
+  <meta property="og:title" content="A little something. For you.">
+  <meta property="og:description" content="Some things are better unwrapped. Tap to open.">
+  <meta property="og:url" content="https://jujubeans85.github.io/club-2263/gift/">
+  <link rel="canonical" href="https://jujubeans85.github.io/club-2263/gift/">
+  <meta property="og:image" content="https://jujubeans85.github.io/club-2263/gift/gift-preview.png">
+  <meta property="og:image:alt" content="A sealed burgundy invitation with a brass ribbon and wax seal. Something is waiting. Tap to unwrap.">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="dark">
+  <title>A little something. For you.</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="gift-icon.png">
+  <link rel="stylesheet" href="gift.css">
+  <script src="gift.js" defer></script>
+</head>
+<body>
+  <main class="gift-page" id="gift-page" data-stage="sealed">
+    <header class="gift-header">
+      <span class="tiny-mark" aria-hidden="true">✦</span>
+      <p>DELIVERED WITH A LITTLE MYSTERY</p>
+      <span class="tiny-mark" aria-hidden="true">✦</span>
+    </header>
+
+    <div class="intro" id="gift-intro">
+      <p class="eyebrow">A PRIVATE LITTLE SOMETHING</p>
+      <h1 id="gift-title">For <em>you.</em></h1>
+      <p class="intro-copy" id="intro-copy">Some things are better unwrapped.</p>
+    </div>
+
+    <div class="gift-scene" id="gift-scene">
+      <div class="gift-box" id="gift-box" aria-describedby="gift-hint">
+        <div class="paper-base" aria-hidden="true"></div>
+        <div class="fold fold-left" aria-hidden="true"></div>
+        <div class="fold fold-right" aria-hidden="true"></div>
+        <div class="fold fold-top" aria-hidden="true"></div>
+        <div class="fold fold-bottom" aria-hidden="true"></div>
+        <div class="paper-edge" aria-hidden="true"></div>
+        <div class="ribbon ribbon-vertical" aria-hidden="true"><span></span></div>
+        <div class="ribbon ribbon-horizontal" aria-hidden="true"><span></span></div>
+        <div class="gift-tag" aria-hidden="true"><span>FOR YOU</span><i>open a little possibility</i></div>
+        <button class="seal" id="break-seal" type="button" aria-label="Break the seal on your gift" aria-describedby="gift-hint">
+          <span class="seal-edge" aria-hidden="true"></span>
+          <svg class="seal-star" aria-hidden="true" viewBox="0 0 60 60"><path d="M30 6c2.7 15.5 8.5 21.3 24 24-15.5 2.7-21.3 8.5-24 24C27.3 38.5 21.5 32.7 6 30 21.5 27.3 27.3 21.5 30 6Z"/><circle cx="30" cy="30" r="5.8"/></svg>
+        </button>
+        <div class="unwrap-action" id="unwrap-action" hidden>
+          <span class="unwrap-star" aria-hidden="true">✦</span>
+          <p>Go on.</p>
+          <button class="unwrap-button" id="unwrap-gift" type="button">Unwrap your gift <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+          <span class="swipe-hint">OR SWIPE THE WRAPPING SIDEWAYS</span>
+        </div>
+      </div>
+
+      <section class="reveal" id="gift-reveal" aria-labelledby="reveal-title" hidden>
+        <div class="reveal-heading">
+          <span class="eyebrow">A LITTLE MYSTERY. NOW YOURS.</span>
+          <h2 id="reveal-title" tabindex="-1">You’re <em>invited.</em></h2>
+          <p>Some nights are better kept.</p>
+        </div>
+        <a class="invitation-art" href="https://x-club-2263.netlify.app/invite.svg" aria-label="Open the full CLUB 2263 invitation">
+          <img id="invitation-image" src="../invite.png" width="1080" height="1600" alt="CLUB 2263 private invitation. After dark, by invitation. Open the full invitation for the details." decoding="async">
+          <span class="invitation-fallback" id="invitation-fallback" hidden><span class="eyebrow">AFTER DARK. BY INVITATION.</span><span class="fallback-club">CLUB <b>2263</b></span><em>Some nights are better kept.</em><span class="eyebrow">OPEN YOUR INVITATION ↗</span></span>
+        </a>
+        <div class="reveal-actions">
+          <a class="button button-main" href="https://x-club-2263.netlify.app/invite.svg">Open your invitation <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+          <a class="button button-outline" href="https://x-club-2263.netlify.app/">Enter CLUB 2263 <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a>
+          <div class="secondary-actions"><a href="../invite.png" download="CLUB-2263-Invitation.png">Save invitation <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 4v12m-5-5 5 5 5-5M5 18v3h14v-3"/></svg></a><button id="share-gift" type="button">Share gift <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M7 12H4v9h16v-9h-3"/></svg></button></div>
+          <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+          <div class="share-fallback" id="share-fallback" hidden><label for="share-url">Copy your gift link</label><input id="share-url" type="url" readonly></div>
+        </div>
+        <p class="arrival-note">Adults 18+ · By invitation.<br>Confirm with the person who invited you.</p>
+        <button class="replay-button" id="wrap-again" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></svg> Wrap it again</button>
+      </section>
+    </div>
+
+    <div class="wrapping-footer" id="wrapping-footer">
+      <p class="gift-hint" id="gift-hint"><span class="hint-line" aria-hidden="true"></span> TAP THE SEAL <span class="hint-line" aria-hidden="true"></span></p>
+      <p class="soft-note" id="soft-note">Take your time. It’s yours to open.</p>
+      <button class="skip-button" id="skip-wrapping" type="button">Open without the wrapping <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></button>
+    </div>
+    <p class="sr-only" id="gift-status" role="status" aria-live="polite"></p>
+    <noscript><div class="no-script"><p>Your invitation is waiting.</p><a class="button button-main" href="https://x-club-2263.netlify.app/invite.svg">Open your invitation</a></div></noscript>
+    <footer class="gift-footer"><span aria-hidden="true">✦</span><p>A LITTLE ANTICIPATION LOOKS GOOD ON YOU.</p></footer>
+  </main>
+</body>
+</html>

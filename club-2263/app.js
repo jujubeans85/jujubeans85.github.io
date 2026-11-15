@@ -35,7 +35,7 @@
   const shareStatus = document.getElementById('share-status');
   const shareFallback = document.getElementById('share-fallback');
   const shareInput = document.getElementById('share-url');
-  const invitationUrl = new URL(window.location.href);
+  const invitationUrl = new URL('gift/', document.baseURI);
   invitationUrl.hash = '';
   invitationUrl.search = '';
 
@@ -43,7 +43,7 @@
     if (navigator.clipboard && window.isSecureContext) {
       try {
         await navigator.clipboard.writeText(invitationUrl.href);
-        shareStatus.textContent = 'Invitation link copied. Keep it close.';
+        shareStatus.textContent = 'Wrapped invitation link copied. Keep it close.';
         return;
       } catch (_) {
         // Offer an ordinary selectable link if clipboard access is unavailable.
@@ -61,12 +61,8 @@
     shareFallback.hidden = true;
     if (typeof navigator.share === 'function') {
       try {
-        await navigator.share({
-          title: 'CLUB 2263 — After dark. By invitation.',
-          text: 'Midnight · Monday 16 November 2026 · Sydney time. 18+. Confirm with the person who invited you.',
-          url: invitationUrl.href
-        });
-        shareStatus.textContent = 'Invitation shared.';
+        await navigator.share({ url: invitationUrl.href });
+        shareStatus.textContent = 'Your wrapped invitation is ready to share.';
         return;
       } catch (error) {
         if (error && error.name === 'AbortError') {
