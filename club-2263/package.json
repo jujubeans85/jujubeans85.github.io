@@ -1,0 +1,10 @@
+{
+  "name": "club-2263",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CLUB 2263 — a private midnight invitation",
+  "scripts": {
+    "dev": "python3 dev-server.py",
+    "check": "node --check app.js"
+  }
+}

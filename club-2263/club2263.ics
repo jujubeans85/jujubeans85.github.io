@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CLUB 2263//Private Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:club2263-20261116-midnight@jujubeans85.github.io
+DTSTAMP:20261115T103000Z
+DTSTART:20261115T130000Z
+SUMMARY:CLUB 2263 — After dark
+LOCATION:CLUB 2263 — arrival details shared privately
+DESCRIPTION:Midnight at the end of Sunday: 12:00 am Monday 16 November 20
+ 26 AEDT. Adults 18+ by private invitation. Contact the person who invite
+ d you to confirm attendance and arrival details.
+URL:https://jujubeans85.github.io/club-2263/
+CLASS:PRIVATE
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

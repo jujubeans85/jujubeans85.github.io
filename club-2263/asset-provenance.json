@@ -1,0 +1,50 @@
+[
+  {
+    "key": "salon",
+    "source": "IMG_3604.jpeg",
+    "prompt": "Preserve curved rattan chair, red sofa edge, timber floorboards and woven rugs, with original tilted composition. Remove small white scraps on the timber floor. Turn bright green strip into subtle warm ruby accent. Portrait.",
+    "shared_style": "Cinematic midnight salon; near-black, oxblood burgundy, muted ruby illumination and small aged-brass amber highlights, chiaroscuro and subtle analog film grain. Actual furniture and room shapes retained, no added people or text.",
+    "method": "built-in image_gen",
+    "file": "assets/salon.webp"
+  },
+  {
+    "key": "velvet",
+    "source": "IMG_3605.jpeg",
+    "prompt": "Preserve the central carved wood furniture leg and rich cloth textures on either side. Remove the white sneakers and replace only that footprint naturally with matching fabric. Keep the decorative cream/red upholstery pattern. Landscape.",
+    "shared_style": "Cinematic midnight salon; near-black, oxblood burgundy, muted ruby illumination and small aged-brass amber highlights, chiaroscuro and subtle analog film grain. Actual furniture and room shapes retained, no added people or text.",
+    "method": "built-in image_gen",
+    "file": "assets/velvet.webp"
+  },
+  {
+    "key": "lamp",
+    "source": "IMG_3606.jpeg",
+    "prompt": "Preserve the complete tall sculptural lamp, cylindrical shade, hanging vine, dark candelabra and side of canvas. Lamp should be the main warm amber source, illuminating a deep wine-red dark room; dim the original pale ambient light. Portrait.",
+    "shared_style": "Cinematic midnight salon; near-black, oxblood burgundy, muted ruby illumination and small aged-brass amber highlights, chiaroscuro and subtle analog film grain. Actual furniture and room shapes retained, no added people or text.",
+    "method": "built-in image_gen",
+    "file": "assets/lamp.webp"
+  },
+  {
+    "key": "muse",
+    "source": "IMG_3607.jpeg",
+    "prompt": "Preserve the actual existing wall painting, including the silhouette's existing dress, pose, frame proportions, palette shapes and vine. Treat this as a photograph of the artwork in a dark burgundy room with one fine amber/ruby light. Do not change the figure's clothing or body. Portrait.",
+    "shared_style": "Cinematic midnight salon; near-black, oxblood burgundy, muted ruby illumination and small aged-brass amber highlights, chiaroscuro and subtle analog film grain. Actual furniture and room shapes retained, no added people or text.",
+    "method": "built-in image_gen",
+    "file": "assets/muse.webp"
+  },
+  {
+    "key": "ember",
+    "source": "IMG_3609.jpeg",
+    "prompt": "Preserve candle flame, candle vessel, amber glass bottle and close still-life framing. Make bottle label and any brand text indistinguishable in deep shadow. Let the candle burn a muted golden amber against oxblood shadows; keep visible bottle contours. Remove incidental clutter at the bottom edge while retaining natural tabletop. Portrait.",
+    "shared_style": "Cinematic midnight salon; near-black, oxblood burgundy, muted ruby illumination and small aged-brass amber highlights, chiaroscuro and subtle analog film grain. Actual furniture and room shapes retained, no added people or text.",
+    "method": "built-in image_gen",
+    "file": "assets/ember.webp"
+  },
+  {
+    "key": "threshold",
+    "source": "IMG_3598.jpeg",
+    "prompt": "Preserve timber floor, sofa edge, rattan chair, colorful rug and tiled threshold in the original oblique composition. REMOVE all visible feet, hands, body parts and people, filling naturally with the existing rugs/floor; this must be an empty room detail. Remove small floor scraps. Shift blue light to muted ruby. Landscape.",
+    "shared_style": "Cinematic midnight salon; near-black, oxblood burgundy, muted ruby illumination and small aged-brass amber highlights, chiaroscuro and subtle analog film grain. Actual furniture and room shapes retained, no added people or text.",
+    "method": "built-in image_gen",
+    "file": "assets/threshold.webp"
+  }
+]
