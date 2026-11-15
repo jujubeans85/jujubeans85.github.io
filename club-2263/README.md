@@ -1,140 +1,118 @@
-# CLUB 2263 — After dark. By invitation.
+# CLUB 2263 — Your platinum hour
 
-A self-contained static event teaser with six original supplied photographs
-restyled into one candlelit, oxblood and aged-brass visual treatment.
+A self-contained, phone-first VIP scene using the six supplied photographs,
+restyled in candlelit oxblood and aged brass. The primary experience is `live/`;
+the root `index.html` redirects there and supplies matching share metadata.
+The existing wrapped invitation in `gift/` is preserved.
 
-## Event
+## Fixed event and cutoff
 
-- Start: **12:00 am Monday 16 November 2026, Australia/Sydney (AEDT)**.
-- This is midnight at the end of Sunday 15 November.
-- UTC instant: `2026-11-15T13:00:00Z`.
-- Adults 18+, by invitation. Confirmation and arrival details come through the inviter.
-- No street address, attendee list, ticketing or RSVP database is published.
-- The page is a public teaser. Search noindex and an invitation theme do not provide authentication.
+- Original arrival: midnight at the end of Sunday 15 November 2026.
+- **Doors close strictly at 02:00 Monday 16 November 2026, Australia/Sydney (AEDT).**
+- Cutoff instant: `2026-11-16T02:00:00+11:00`, or `2026-11-15T15:00:00Z`.
+- Adults 18+, by invitation. Arrival details come through the inviter.
 
-## Files and behaviour
+`live/event-config.js` is the single source for the live deadline, alert
+milestones, image/word sequence, audio path and initial volume. The countdown
+uses the fixed timestamp and the current clock; it clamps at zero and changes
+to **DOORS CLOSED**. It never rolls over to another night. Update the visible
+HTML date, share artwork and metadata alongside that configuration before
+reusing this for a different event.
 
-- `index.html`, `styles.css`, `app.js`: complete responsive website, no remote dependencies.
-- `assets/*.webp`: all six restyled source images, about 867 KB combined.
-- `invite.svg`: self-contained 1080 × 1600 invitation; photograph embedded, typography outlined.
-- `invite.png`: same artwork for phone sharing.
-- `og-image.png`: 1200 × 630 link preview.
-- `club2263.ics`: start-only calendar event; no invented end time.
-- `asset-provenance.json`: original filenames and image-edit prompts.
-- `tools/render-invitation.py`: reproducible vector invitation authoring.
-- `gift/`: a phone-first wrapped invitation, with sealed link-preview artwork.
+## Live experience
 
-The countdown stops at zero, changes to “Midnight has arrived”, then uses an
-archive message after 24 hours. Gallery photographs open in a keyboard-accessible
-dialog. The share button shares the wrapped gift URL through the device share
-sheet, with clipboard and selectable-link fallbacks. Nothing is sent automatically.
+The splash announces that **JUiCE has gifted you a platinum VIP PASS**, with
+late entry and special attention on arrival, valid only until the stated cutoff.
+Accepting the pass reveals a single-screen scene: photographs fade through
+curated positions, separate faint words provide clinical-comic asides, and the
+countdown remains foregrounded.
 
-## Wrapped gift for Messages
+- `live/index.html`, `live/live.css`, `live/live.js`: splash, scene and controls.
+- `live/event-config.js`: central configuration and pure timing helpers.
+- `live/vip-preview.png` and `.svg`: matching platinum-pass share artwork.
+- `assets/*.webp`: all six previously restyled photos, reused without changes.
+- `audio/vip-afterhours-loop.mp3`: the processed supplied recording.
 
-Share <https://jujubeans85.github.io/club-2263/gift/>.
+Controls cover sound, pause/resume scene and sharing the current pass URL.
+Quiet entry is available. Reduced motion, keyboard focus, native buttons,
+clipboard/selectable-link sharing fallbacks and a no-JavaScript destination
+are included. Nothing is sent automatically. There are no external script
+libraries, accounts, recipient tracking or payment flows.
 
-The recipient sees sealed burgundy-and-brass artwork in a supported link preview.
-Opening the link presents a wax seal: tap to loosen the ribbon, then tap the unwrap
-button or swipe sideways to reveal the invitation. The reveal links to the exact
-live invitation at <https://x-club-2263.netlify.app/invite.svg>.
+### Sound and reminders on iPhone
 
-There is a direct-open alternative, keyboard focus handling, reduced-motion
-support, an image-error fallback, and a no-JavaScript link. Each visit starts
-wrapped; the replay button resets the experience. There are no accounts,
-cookies, recipient tracking, payments or dependencies on external scripts.
+Audio starts from the entry tap, with a soft initial volume. iPhone playback
+requires that user gesture; playback failures leave a usable Sound control.
+Entering quietly and muting are supported.
 
-Messages does not run custom JavaScript inside an ordinary link-preview bubble.
-The interactive unwrapping happens on the web page after the recipient opens it.
-No app installation is required. Preview rendering depends on the receiving
-Messages app. Browser testing covered the mobile layout, seal, reveal, skip,
-replay and share fallback; no physical iPhone Messages session was tested.
+Reminders are **in-page notices** every ten minutes until ten minutes remain,
+then every two minutes: 01:10, 01:20, 01:30, 01:40, 01:50, 01:52, 01:54,
+01:56, 01:58 and the 02:00 closure, all Sydney time. They state the time left;
+soft chimes respect the sound control. Returning to the page recalculates from
+the clock and collapses missed milestones into one current notice.
 
-Apple reference: <https://developer.apple.com/documentation/technotes/tn3156-create-rich-previews-for-messages>.
+**Keep the page open for time alerts.** This release does not provide guaranteed
+background or lock-screen notifications. It does not install a push service or
+request notification permission. A 02:00 alarm in the iPhone Clock app is a
+separate optional backup. The old `club2263.ics` describes the original midnight
+arrival; it is not the live cutoff-reminder system.
 
-The wrapping is a visual surprise, not authentication or a one-time access token.
-Sharing only the gift URL keeps the event details out of the message caption.
+The exported loop is 16.489 seconds, approximately 331 KB, measured at
+−18.44 LUFS and −4.08 dBTP. It keeps the recorded source with a subtle slowdown,
+warmer tone, restrained stereo reflections and a repeat-boundary crossfade.
+See `docs/audio-provenance.json` for source identity, exact processing settings
+and measurements. Decode and signal checks passed; the audio record explicitly
+notes that no direct listening interface was available for an ear-based audit.
 
-Preview assets in `gift/`: `gift-preview.png` / `.svg` are 1200 × 630;
-`gift-preview-vertical.png` / `.svg` are 1080 × 1350. SVG type is outlined and the
-artwork is self-contained. The raster apple-touch icon is 180 × 180.
+## Public sharing and deployment
 
-## Source and GitHub Pages
+Intended VIP share URL: <https://x-club-2263.netlify.app/live/>.
+Existing wrapped gift: <https://x-club-2263.netlify.app/gift/>.
+Original invitation: <https://x-club-2263.netlify.app/invite.svg>.
 
-Canonical source directory: `jujubeans85/jujubeans85.github.io`, branch `main`,
-`club-2263/`.
+The existing **x-club-2263** Netlify project uses manual drop deployment.
+**This new platinum live-page release is prepared as a Netlify ZIP and has not
+yet been published to that project.** The earlier wrapped-gift deployment was
+confirmed ready under deploy `6af995fca93cc9a6f1728c54`; that does not publish
+this newer live scene.
 
-Page URL: <https://jujubeans85.github.io/club-2263/>.
+Unzip the new complete-site bundle, open the existing project's **Deploys**
+page and upload the extracted folder containing `index.html` directly at its
+root. Deploy the full bundle, including `live/`, `audio/`, `assets/` and `gift/`.
+No install, build command or application server is required. `_headers` and
+`netlify.toml` carry static hosting configuration.
 
-Existing repository files outside this directory are preserved. The event date
-is fixed; update the HTML, countdown instant, calendar, invitation generator and
-social metadata together before reusing this for another night.
+Dashboard: <https://app.netlify.com/projects/x-club-2263>.
+Official manual-upload instructions:
+<https://docs.netlify.com/deploy/create-deploys/#drag-and-drop>.
 
-## Netlify deployment
+Source remains `jujubeans85/jujubeans85.github.io`, branch `main`, directory
+`club-2263/`. A source update on GitHub does **not** automatically deploy this
+manual Netlify project. Preserve unrelated repository content. Verify the new
+Netlify deployment before announcing its live route. Use the Netlify URL for
+recipient-facing sharing: Messages displays the domain of the link sent.
 
-The existing **x-club-2263** site is live at
-<https://x-club-2263.netlify.app/>. Its original uploaded deployment was verified
-on 15 November 2026 (deploy `6af9909c7c365b19556b47c4`). It is a drop deployment,
-so a GitHub commit does not automatically update it.
+A link preview is artwork and metadata; custom gift/scene interactions run
+after opening the webpage. The existing `gift/` still opens with its seal,
+unwrapping, replay and original invitation. Wrapping, noindex and private-event
+styling provide atmosphere, not authentication or a one-time access token.
 
-Project dashboard: <https://app.netlify.com/projects/x-club-2263>
+## Development and provenance
 
-**The new gift route still needs the updated bundle uploaded to Netlify.**
-This workspace's Netlify dashboard access is blocked and its connected tools
-do not expose deploy uploads. The GitHub Pages gift is available independently.
+Run `npm run dev` (Python 3 required) for local preview and `npm run check` for
+JavaScript syntax checks. Test the fixed cutoff, notification boundaries,
+return-from-background behaviour, phone layout, sound/mute, pause and sharing.
+Report physical-device and live-host access limits accurately.
 
-For a manual update, unzip `CLUB_2263_Unwrap_Netlify.zip`, open this existing
-project's **Deploys** page, and upload the extracted `CLUB_2263_Unwrap_Netlify`
-folder to the deploy dropzone. This is the complete site, including the gift;
-`index.html` is directly inside that folder. No install, build command or server
-is needed. `_headers` carries the static response rules. The Netlify bundle's
-canonical and Open Graph URLs already target `x-club-2263.netlify.app`.
-Official instructions: <https://docs.netlify.com/deploy/create-deploys/#drag-and-drop>.
+`asset-provenance.json` records the original photo names and image-edit prompts.
+`tools/render-invitation.py` preserves the original SVG invitation authoring.
+The original invitation exports and earlier browser proofs remain in the
+project. The supplied message screenshot was context, not a public scene image.
 
-For Git continuous deployment, connect this GitHub repository, use branch `main`,
-base directory `club-2263`, and publish directory `.`. Leave the build command
-empty. The supplied `netlify.toml` defines the static publish directory.
-
-After the new Netlify upload, the gift route will be `/gift/` on that site. Keep
-sharing the working GitHub Pages gift until the Netlify gift route is verified.
-For a future switch to continuous deployment, update source canonical/OG URLs
-to the chosen primary host. The share controls use the current host at runtime.
-
-`.netlify/` and environment files are ignored by Git. No credentials are included.
-
-## Local preview
-
-Run `npm run dev` (requires Python 3), or `python3 dev-server.py --port 3000`.
-Run `npm run check` for the JavaScript syntax check.
-
-The invitation renderer is optional authoring tooling. Regenerating the artwork
-requires Python fontTools and Pillow, Node sharp, and the font paths documented
-in the script. The exported website needs none of those packages to run.
-
-## Preview
-
-![Desktop layout](docs/preview-desktop.jpg)
-
-[Phone layout](docs/preview-mobile.jpg)
-
-[Wrapped gift on a phone layout](docs/gift-wrapped-phone.jpg)
-
-[Revealed invitation on a phone layout](docs/gift-reveal-phone.jpg)
-
-## Creative references
-
-Research informed the atmosphere-first structure, visible event time, private
-arrival details and concise consent notes. All CLUB 2263 copy and graphics are
-original; no affiliation is implied.
-
-- Historical Hellfire organiser listing: <https://ra.co/events/8323>
-- First-person Hellfire history (closed December 2019):
-  <https://headon.org.au/exhibitions/people-hellfire/>
-- Studio Kink / KARNAL page structure: <https://www.studiokink.com/karnal>
-- Eagle Sydney event-first presentation: <https://www.eaglesydney.com.au/>
-
-KARNAL is used as a design reference, not a claim that an old schedule or venue
-is current. No other venue's performers, ticket prices, services or facilities
-are represented as CLUB 2263's.
-
-The uploaded screen recording was reviewed as context and is not part of the
-public page. The six photographs are represented by their restyled derivatives.
+All CLUB 2263 copy and graphics are original; no affiliation with reference
+venues is implied. The original visual research used the historical Hellfire
+organiser listing (<https://ra.co/events/8323>), first-person Hellfire history
+(<https://headon.org.au/exhibitions/people-hellfire/>), Studio Kink/KARNAL
+(<https://www.studiokink.com/karnal>) and Eagle Sydney
+(<https://www.eaglesydney.com.au/>). Those references establish no current
+performers, prices, facilities or services for CLUB 2263.
