@@ -1,11 +1,11 @@
 {
-  "name": "Clobo",
+  "name": "Clobo’s Freedom",
   "short_name": "Clobo",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "theme_color": "#F72D8A",
-  "background_color": "#F72D8A",
+  "background_color": "#170815",
   "icons": [
     {
       "src": "identity/icon-192.png",
@@ -19,5 +19,7 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "id": "./index.html",
+  "description": "Same heart. Brighter days. The countdown to 27 November 2026."
 }
