@@ -42,5 +42,12 @@ for (let i=0; i<data.messages.length; i++) {
 lines.push('END:VCALENDAR');
 fs.writeFileSync(path.join(__dirname,'chlo-28-days.ics'), lines.map(fold).join('\r\n') + '\r\n');
 fs.writeFileSync(path.join(__dirname,'chlo-28-messages.md'), sheet);
-fs.writeFileSync(path.join(__dirname,'chlo-sms-by-date.json'), JSON.stringify(smsByDate, null, 2) + '\n');
+const feedPath = path.join(__dirname, 'chlo-sms-by-date.json');
+const finishKey = daily.keyForDay(daily.finishDay);
+const published = fs.existsSync(feedPath) ? JSON.parse(fs.readFileSync(feedPath, 'utf8')) : {};
+// The countdown owns dates before graduation; later editions use the same phone URL.
+for (const [key, text] of Object.entries(published)) {
+  if (key >= finishKey) smsByDate[key] = text;
+}
+fs.writeFileSync(feedPath, JSON.stringify(smsByDate, null, 2) + '\n');
 console.log('Built date-keyed SMS feed, 28 calendar events with alarms and the complete message sheet.');
