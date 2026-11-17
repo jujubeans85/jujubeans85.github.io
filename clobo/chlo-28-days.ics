@@ -489,18 +489,20 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:chlo-countdown-2026-20261117@jujubeans85.github.io
-DTSTAMP:20261028T080000Z
-SEQUENCE:0
+DTSTAMP:20261117T022436Z
+SEQUENCE:1
 DTSTART;TZID=Australia/Sydney:20261117T080000
 DTEND;TZID=Australia/Sydney:20261117T080100
-SUMMARY:10 days ♡ Saturn is less dense than water. Impressive\, but I’m
-  still more amazed that you made room in your brain for pharmacology. — 
- Dad
-DESCRIPTION:CHLO · 10 days to go\n\nSaturn is less dense than water. Impre
- ssive\, but I’m still more amazed that you made room in your brain for p
- harmacology.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://ju
- jubeans85.github.io/clobo/\n\nFact source: NASA\nhttps://science.nasa.gov/
- saturn/facts/
+SUMMARY:10 days ♡ Abby and Clobo\, I hear you two read these together. Ma
+ de my day. I’ll be counting a double eye roll as a standing ovation. 
+ 💛 Saturn is less dense than water. Impressive\, but I’m still more am
+ azed that you made room in your brain for pharmacology. — Dad
+DESCRIPTION:CHLO · 10 days to go\n\nAbby and Clobo\, I hear you two read t
+ hese together. Made my day. I’ll be counting a double eye roll as a stan
+ ding ovation. 💛\n\nSaturn is less dense than water. Impressive\, but I
+ ’m still more amazed that you made room in your brain for pharmacology.\
+ n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans85.git
+ hub.io/clobo/\n\nFact source: NASA\nhttps://science.nasa.gov/saturn/facts/
 URL:https://jujubeans85.github.io/clobo/
 TRANSP:TRANSPARENT
 STATUS:CONFIRMED
@@ -508,11 +510,12 @@ CLASS:PUBLIC
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:PT0S
-DESCRIPTION:CHLO · 10 days to go\n\nSaturn is less dense than water. Impre
- ssive\, but I’m still more amazed that you made room in your brain for p
- harmacology.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://ju
- jubeans85.github.io/clobo/\n\nFact source: NASA\nhttps://science.nasa.gov/
- saturn/facts/
+DESCRIPTION:CHLO · 10 days to go\n\nAbby and Clobo\, I hear you two read t
+ hese together. Made my day. I’ll be counting a double eye roll as a stan
+ ding ovation. 💛\n\nSaturn is less dense than water. Impressive\, but I
+ ’m still more amazed that you made room in your brain for pharmacology.\
+ n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans85.git
+ hub.io/clobo/\n\nFact source: NASA\nhttps://science.nasa.gov/saturn/facts/
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -543,18 +546,20 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:chlo-countdown-2026-20261119@jujubeans85.github.io
-DTSTAMP:20261028T080000Z
-SEQUENCE:0
+DTSTAMP:20261117T022436Z
+SEQUENCE:1
 DTSTART;TZID=Australia/Sydney:20261119T080000
 DTEND;TZID=Australia/Sydney:20261119T080100
 SUMMARY:8 days ♡ Male seahorses give birth. I was going to offer nursing 
- career advice\, but Dad will sit this one out. — Dad
+ career advice\, but Dad will sit this one out. Abby and Clobo\, whoever ca
+ n say ‘seahorse antenatal class’ with a straight face wins. — Dad
 DESCRIPTION:CHLO · 8 days to go\n\nMale seahorses give birth. I was going 
- to offer nursing career advice\, but Dad will sit this one out.\n\nLUV YA 
- !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans85.github.io/clo
- bo/\n\nFact source: University of Sydney\nhttps://www.sydney.edu.au/news-o
- pinion/news/2022/09/06/new-research-discovers-the-elaborate-and-unique-way
- -seahorse-fat.html
+ to offer nursing career advice\, but Dad will sit this one out.\n\nAbby an
+ d Clobo\, whoever can say ‘seahorse antenatal class’ with a straight f
+ ace wins.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujub
+ eans85.github.io/clobo/\n\nFact source: University of Sydney\nhttps://www.
+ sydney.edu.au/news-opinion/news/2022/09/06/new-research-discovers-the-elab
+ orate-and-unique-way-seahorse-fat.html
 URL:https://jujubeans85.github.io/clobo/
 TRANSP:TRANSPARENT
 STATUS:CONFIRMED
@@ -563,11 +568,12 @@ BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:PT0S
 DESCRIPTION:CHLO · 8 days to go\n\nMale seahorses give birth. I was going 
- to offer nursing career advice\, but Dad will sit this one out.\n\nLUV YA 
- !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans85.github.io/clo
- bo/\n\nFact source: University of Sydney\nhttps://www.sydney.edu.au/news-o
- pinion/news/2022/09/06/new-research-discovers-the-elaborate-and-unique-way
- -seahorse-fat.html
+ to offer nursing career advice\, but Dad will sit this one out.\n\nAbby an
+ d Clobo\, whoever can say ‘seahorse antenatal class’ with a straight f
+ ace wins.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujub
+ eans85.github.io/clobo/\n\nFact source: University of Sydney\nhttps://www.
+ sydney.edu.au/news-opinion/news/2022/09/06/new-research-discovers-the-elab
+ orate-and-unique-way-seahorse-fat.html
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -597,17 +603,20 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:chlo-countdown-2026-20261121@jujubeans85.github.io
-DTSTAMP:20261028T080000Z
-SEQUENCE:0
+DTSTAMP:20261117T022436Z
+SEQUENCE:1
 DTSTART;TZID=Australia/Sydney:20261121T080000
 DTEND;TZID=Australia/Sydney:20261121T080100
 SUMMARY:6 days ♡ You are not ‘just a student’. You’re a future nurs
- e with the receipts\, the resilience and approximately six missing pens. 
- — Dad
+ e with the receipts\, the resilience and approximately six missing pens. A
+ bby and Clobo\, I’d lend you my pen but I’ve just checked and I’m ho
+ lding the lid. — Dad
 DESCRIPTION:CHLO · 6 days to go\n\nYou are not ‘just a student’. You
  ’re a future nurse with the receipts\, the resilience and approximately 
- six missing pens.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps
- ://jujubeans85.github.io/clobo/\n\nOriginal words from Dad.
+ six missing pens.\n\nAbby and Clobo\, I’d lend you my pen but I’ve jus
+ t checked and I’m holding the lid.\n\nLUV YA !😀💛\nSame heart. Brig
+ hter days.\n\nhttps://jujubeans85.github.io/clobo/\n\nOriginal words from 
+ Dad.
 URL:https://jujubeans85.github.io/clobo/
 TRANSP:TRANSPARENT
 STATUS:CONFIRMED
@@ -617,8 +626,10 @@ ACTION:DISPLAY
 TRIGGER:PT0S
 DESCRIPTION:CHLO · 6 days to go\n\nYou are not ‘just a student’. You
  ’re a future nurse with the receipts\, the resilience and approximately 
- six missing pens.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps
- ://jujubeans85.github.io/clobo/\n\nOriginal words from Dad.
+ six missing pens.\n\nAbby and Clobo\, I’d lend you my pen but I’ve jus
+ t checked and I’m holding the lid.\n\nLUV YA !😀💛\nSame heart. Brig
+ hter days.\n\nhttps://jujubeans85.github.io/clobo/\n\nOriginal words from 
+ Dad.
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -648,16 +659,20 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:chlo-countdown-2026-20261123@jujubeans85.github.io
-DTSTAMP:20261028T080000Z
-SEQUENCE:0
+DTSTAMP:20261117T022436Z
+SEQUENCE:1
 DTSTART;TZID=Australia/Sydney:20261123T080000
 DTEND;TZID=Australia/Sydney:20261123T080100
 SUMMARY:4 days ♡ You’ve spent years learning how to care for strangers.
-  I’ve spent the same years being ridiculously proud of you. — Dad
+  I’ve spent the same years being ridiculously proud of you. Abby and Clo
+ bo\, I’m glad you’ve got each other for the bits of the day only someo
+ ne who was there would get. 💛 — Dad
 DESCRIPTION:CHLO · 4 days to go\n\nYou’ve spent years learning how to ca
  re for strangers. I’ve spent the same years being ridiculously proud of 
- you.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans8
- 5.github.io/clobo/\n\nOriginal words from Dad.
+ you.\n\nAbby and Clobo\, I’m glad you’ve got each other for the bits o
+ f the day only someone who was there would get. 💛\n\nLUV YA !😀💛\n
+ Same heart. Brighter days.\n\nhttps://jujubeans85.github.io/clobo/\n\nOrig
+ inal words from Dad.
 URL:https://jujubeans85.github.io/clobo/
 TRANSP:TRANSPARENT
 STATUS:CONFIRMED
@@ -667,8 +682,10 @@ ACTION:DISPLAY
 TRIGGER:PT0S
 DESCRIPTION:CHLO · 4 days to go\n\nYou’ve spent years learning how to ca
  re for strangers. I’ve spent the same years being ridiculously proud of 
- you.\n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans8
- 5.github.io/clobo/\n\nOriginal words from Dad.
+ you.\n\nAbby and Clobo\, I’m glad you’ve got each other for the bits o
+ f the day only someone who was there would get. 💛\n\nLUV YA !😀💛\n
+ Same heart. Brighter days.\n\nhttps://jujubeans85.github.io/clobo/\n\nOrig
+ inal words from Dad.
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -698,16 +715,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:chlo-countdown-2026-20261125@jujubeans85.github.io
-DTSTAMP:20261028T080000Z
-SEQUENCE:0
+DTSTAMP:20261117T022436Z
+SEQUENCE:1
 DTSTART;TZID=Australia/Sydney:20261125T080000
 DTEND;TZID=Australia/Sydney:20261125T080100
 SUMMARY:2 days ♡ Almost there\, Chlo. Today’s care plan: eat something 
- decent\, back yourself and let Dad overdo the proud bit. — Dad
+ decent\, back yourself and let Dad overdo the proud bit. Abby and Clobo\, 
+ you might want to practise looking like you don’t know me when the cheer
+ ing starts. — Dad
 DESCRIPTION:CHLO · 2 days to go\n\nAlmost there\, Chlo. Today’s care pla
  n: eat something decent\, back yourself and let Dad overdo the proud bit.\
- n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans85.git
- hub.io/clobo/\n\nOriginal words from Dad.
+ n\nAbby and Clobo\, you might want to practise looking like you don’t kn
+ ow me when the cheering starts.\n\nLUV YA !😀💛\nSame heart. Brighter 
+ days.\n\nhttps://jujubeans85.github.io/clobo/\n\nOriginal words from Dad.
 URL:https://jujubeans85.github.io/clobo/
 TRANSP:TRANSPARENT
 STATUS:CONFIRMED
@@ -717,8 +737,9 @@ ACTION:DISPLAY
 TRIGGER:PT0S
 DESCRIPTION:CHLO · 2 days to go\n\nAlmost there\, Chlo. Today’s care pla
  n: eat something decent\, back yourself and let Dad overdo the proud bit.\
- n\nLUV YA !😀💛\nSame heart. Brighter days.\n\nhttps://jujubeans85.git
- hub.io/clobo/\n\nOriginal words from Dad.
+ n\nAbby and Clobo\, you might want to practise looking like you don’t kn
+ ow me when the cheering starts.\n\nLUV YA !😀💛\nSame heart. Brighter 
+ days.\n\nhttps://jujubeans85.github.io/clobo/\n\nOriginal words from Dad.
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT

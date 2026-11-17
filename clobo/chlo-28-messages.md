@@ -134,6 +134,8 @@ LUV YA !😀💛
 
 ## 10 days to go · 2026-11-17
 
+Abby and Clobo, I hear you two read these together. Made my day. I’ll be counting a double eye roll as a standing ovation. 💛
+
 Saturn is less dense than water. Impressive, but I’m still more amazed that you made room in your brain for pharmacology.
 
 LUV YA !😀💛
@@ -150,6 +152,8 @@ LUV YA !😀💛
 
 Male seahorses give birth. I was going to offer nursing career advice, but Dad will sit this one out.
 
+Abby and Clobo, whoever can say ‘seahorse antenatal class’ with a straight face wins.
+
 LUV YA !😀💛
 
 Fact source: [University of Sydney](https://www.sydney.edu.au/news-opinion/news/2022/09/06/new-research-discovers-the-elaborate-and-unique-way-seahorse-fat.html)
@@ -164,6 +168,8 @@ LUV YA !😀💛
 
 You are not ‘just a student’. You’re a future nurse with the receipts, the resilience and approximately six missing pens.
 
+Abby and Clobo, I’d lend you my pen but I’ve just checked and I’m holding the lid.
+
 LUV YA !😀💛
 
 ## 5 days to go · 2026-11-22
@@ -176,6 +182,8 @@ LUV YA !😀💛
 
 You’ve spent years learning how to care for strangers. I’ve spent the same years being ridiculously proud of you.
 
+Abby and Clobo, I’m glad you’ve got each other for the bits of the day only someone who was there would get. 💛
+
 LUV YA !😀💛
 
 ## 3 days to go · 2026-11-24
@@ -187,6 +195,8 @@ LUV YA !😀💛
 ## 2 days to go · 2026-11-25
 
 Almost there, Chlo. Today’s care plan: eat something decent, back yourself and let Dad overdo the proud bit.
+
+Abby and Clobo, you might want to practise looking like you don’t know me when the cheering starts.
 
 LUV YA !😀💛
 

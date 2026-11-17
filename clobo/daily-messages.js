@@ -6,8 +6,10 @@
   "timezone": "Australia/Sydney",
   "graduationAt": "2026-11-27T17:00:00+11:00",
   "alertHour": 8,
+  "calendarRevisionStamps": ["20261028T080000Z", "20261117T022436Z"],
   "siteUrl": "https://jujubeans85.github.io/clobo/",
   "graduationMessage": "You did it, Chlo. I’m proud of the nurse you’re becoming. I’ve always been proud of the person you are. Same heart. Brighter days.",
+  "graduationDayPostscript": "Abby and Clobo, thanks for making room for me in your day. Wish I could’ve seen your faces at the seahorse one. 💛",
   "messages": [
     {
       "kind": "fact",
@@ -115,7 +117,8 @@
     },
     {
       "kind": "fact",
-      "text": "Saturn is less dense than water. Impressive, but I’m still more amazed that you made room in your brain for pharmacology.",
+      "text": "Abby and Clobo, I hear you two read these together. Made my day. I’ll be counting a double eye roll as a standing ovation. 💛\n\nSaturn is less dense than water. Impressive, but I’m still more amazed that you made room in your brain for pharmacology.",
+      "calendarRevision": 1,
       "source": {
         "label": "NASA",
         "url": "https://science.nasa.gov/saturn/facts/"
@@ -127,7 +130,8 @@
     },
     {
       "kind": "fact",
-      "text": "Male seahorses give birth. I was going to offer nursing career advice, but Dad will sit this one out.",
+      "text": "Male seahorses give birth. I was going to offer nursing career advice, but Dad will sit this one out.\n\nAbby and Clobo, whoever can say ‘seahorse antenatal class’ with a straight face wins.",
+      "calendarRevision": 1,
       "source": {
         "label": "University of Sydney",
         "url": "https://www.sydney.edu.au/news-opinion/news/2022/09/06/new-research-discovers-the-elaborate-and-unique-way-seahorse-fat.html"
@@ -139,7 +143,8 @@
     },
     {
       "kind": "quote",
-      "text": "You are not ‘just a student’. You’re a future nurse with the receipts, the resilience and approximately six missing pens."
+      "text": "You are not ‘just a student’. You’re a future nurse with the receipts, the resilience and approximately six missing pens.\n\nAbby and Clobo, I’d lend you my pen but I’ve just checked and I’m holding the lid.",
+      "calendarRevision": 1
     },
     {
       "kind": "quote",
@@ -147,7 +152,8 @@
     },
     {
       "kind": "quote",
-      "text": "You’ve spent years learning how to care for strangers. I’ve spent the same years being ridiculously proud of you."
+      "text": "You’ve spent years learning how to care for strangers. I’ve spent the same years being ridiculously proud of you.\n\nAbby and Clobo, I’m glad you’ve got each other for the bits of the day only someone who was there would get. 💛",
+      "calendarRevision": 1
     },
     {
       "kind": "quote",
@@ -155,7 +161,8 @@
     },
     {
       "kind": "quote",
-      "text": "Almost there, Chlo. Today’s care plan: eat something decent, back yourself and let Dad overdo the proud bit."
+      "text": "Almost there, Chlo. Today’s care plan: eat something decent, back yourself and let Dad overdo the proud bit.\n\nAbby and Clobo, you might want to practise looking like you don’t know me when the cheering starts.",
+      "calendarRevision": 1
     },
     {
       "kind": "quote",

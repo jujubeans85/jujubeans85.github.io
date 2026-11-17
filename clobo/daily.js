@@ -17,7 +17,11 @@
   function stateAt(date) {
     var day = ordinal(localKey(date)), index = day - start;
     if (index < 0) return {phase:'before', index:0, days:28, dateKey:keyForDay(start), message:data.messages[0]};
-    if (day >= finish) return {phase:'finished', index:28, days:0, dateKey:keyForDay(finish), message:{kind:'quote', text:data.graduationMessage}};
+    if (day >= finish) {
+      var text = data.graduationMessage;
+      if (day === finish && data.graduationDayPostscript) text += '\n\n' + data.graduationDayPostscript;
+      return {phase:'finished', index:28, days:0, dateKey:keyForDay(finish), message:{kind:'quote', text:text}};
+    }
     return {phase:'active', index:index, days:finish-day, dateKey:keyForDay(day), message:data.messages[index]};
   }
   function dateLabel(key) {

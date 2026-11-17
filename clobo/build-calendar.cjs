@@ -25,11 +25,14 @@ let sheet = '# CHLO · 28 daily notes from Dad ♡\n\n' + data.tagline + '\n\n30
 const smsByDate = {};
 for (let i=0; i<data.messages.length; i++) {
   const message = data.messages[i], days = 28-i, key = daily.keyForDay(daily.startDay+i), date = key.replaceAll('-','');
-  const summary = `${days} ${days === 1 ? 'day' : 'days'} ♡ ${message.text} — Dad`;
+  const revision = message.calendarRevision ?? 0;
+  const stamp = data.calendarRevisionStamps[revision];
+  if (!stamp) throw new Error(`Missing timestamp for calendar revision ${revision}`);
+  const summary = `${days} ${days === 1 ? 'day' : 'days'} ♡ ${message.text.replace(/\n+/g, ' ')} — Dad`;
   const note = `CHLO · ${days} ${days === 1 ? 'day' : 'days'} to go\n\n${message.text}\n\n${data.signoff}\n${data.tagline}\n\n${data.siteUrl}` + (message.source ? `\n\nFact source: ${message.source.label}\n${message.source.url}` : '\n\nOriginal words from Dad.');
   smsByDate[key] = `${days} ${days === 1 ? 'day' : 'days'} to go ♡\n\n${message.text}\n\n${data.signoff}`;
   const hour = String(data.alertHour).padStart(2,'0');
-  lines.push('BEGIN:VEVENT',`UID:chlo-countdown-2026-${date}@jujubeans85.github.io`,'DTSTAMP:20261028T080000Z','SEQUENCE:0',
+  lines.push('BEGIN:VEVENT',`UID:chlo-countdown-2026-${date}@jujubeans85.github.io`,`DTSTAMP:${stamp}`,`SEQUENCE:${revision}`,
     `DTSTART;TZID=${data.timezone}:${date}T${hour}0000`,`DTEND;TZID=${data.timezone}:${date}T${hour}0100`,
     'SUMMARY:' + escape(summary),'DESCRIPTION:' + escape(note),'URL:' + data.siteUrl,'TRANSP:TRANSPARENT','STATUS:CONFIRMED','CLASS:PUBLIC',
     'BEGIN:VALARM','ACTION:DISPLAY','TRIGGER:PT0S','DESCRIPTION:' + escape(note),'END:VALARM','END:VEVENT');
