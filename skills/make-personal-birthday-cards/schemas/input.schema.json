@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "anecdote": {
+      "type": "string",
+      "minLength": 1
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "phone",
+        "paper",
+        "both"
+      ]
+    },
+    "greeting": {
+      "type": "string"
+    },
+    "recording_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "public_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "handwriting": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "anecdote",
+    "format"
+  ],
+  "additionalProperties": false
+}

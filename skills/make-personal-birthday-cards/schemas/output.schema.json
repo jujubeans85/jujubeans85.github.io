@@ -1,0 +1,78 @@
+{
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "string",
+      "enum": [
+        "phone",
+        "paper",
+        "both"
+      ]
+    },
+    "recipient_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "editor_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "print_artifact": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verification": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "format",
+    "verification"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "format": {
+            "enum": [
+              "phone",
+              "both"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "recipient_url"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "format": {
+            "enum": [
+              "paper",
+              "both"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "print_artifact"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

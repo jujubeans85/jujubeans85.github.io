@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Personal Birthday Cards"
+  short_description: "Make printable or interactive cards from one personal memory"
+  default_prompt: "Use $make-personal-birthday-cards to turn a birthday anecdote into a card I can share."

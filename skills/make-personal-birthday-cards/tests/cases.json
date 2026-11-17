@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "cases": [
+    {
+      "id": "remote-in-joke",
+      "input": {
+        "anecdote": "A retired librarian once hid jokes in the returns slips.",
+        "format": "phone",
+        "handwriting": true
+      },
+      "expected": [
+        "Use the returns slip as the front. Keep the punchline inside.",
+        "Show a visible tap option. Open the final link in a fresh session and recover the handwriting without showing the editor."
+      ]
+    },
+    {
+      "id": "paper-gift",
+      "input": {
+        "anecdote": "A keen birdwatcher discovered an unusual call.",
+        "format": "paper",
+        "recording_url": "https://example.org/field-recording"
+      },
+      "expected": [
+        "Keep space for ink, render one page and decode the printed QR.",
+        "The printed code and the digital tap target lead to the selected recording or finished card."
+      ]
+    },
+    {
+      "id": "both-after-move",
+      "input": {
+        "anecdote": "A music teacher used to hide a favourite encore.",
+        "format": "both",
+        "public_url": "https://example.org/recital/"
+      },
+      "expected": [
+        "Give both editions one visual identity.",
+        "Check the public subpath, the preview image, the QR and fresh personalised recipient links. Keep a direct play link when embedding fails."
+      ]
+    }
+  ]
+}

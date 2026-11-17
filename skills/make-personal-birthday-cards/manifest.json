@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "make-personal-birthday-cards",
+  "name": "Make Personal Birthday Cards",
+  "version": "1.0.0",
+  "status": "active",
+  "summary": "Turn a personal anecdote into a one-page printable or interactive card with a shareable musical reveal.",
+  "entrypoint": "SKILL.md",
+  "owner": "JUICE",
+  "license": "Owner-authored workflow",
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "structured-data"
+    ],
+    "output": [
+      "document",
+      "interactive-html",
+      "structured-data"
+    ]
+  },
+  "input_schema": "schemas/input.schema.json",
+  "output_schema": "schemas/output.schema.json",
+  "assets": [
+    "agents/openai.yaml"
+  ],
+  "tests": [
+    "tests/cases.json"
+  ],
+  "privacy": {
+    "classification": "private-by-default",
+    "rules": [
+      "Keep the portable skill free of names, personal notes and third-party recordings.",
+      "Move public card art and wording to a shareable host only when requested.",
+      "A personalised link is readable by its holder."
+    ]
+  },
+  "execution": {
+    "offline": "Can design and render a paper card or local web preview.",
+    "network": "Required to verify external recordings and publish a remote card.",
+    "side_effects": "Publish the requested card. Leave actual message delivery to the sender unless separately authorised."
+  },
+  "tags": [
+    "birthday",
+    "cards",
+    "print",
+    "handwriting",
+    "music",
+    "accessibility"
+  ]
+}
