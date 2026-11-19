@@ -4,18 +4,6 @@
   const maxText = 480;
   const maxPoints = 1800;
   const maxStrokes = 220;
-  const defaultNote = get('letter-content').textContent.trim() || 'I keep picturing you at the front of that computer class, keeping a perfectly straight face until the first kid recognised the tune.\n\nI hope I got you back.\n\nAlles Liebe,\nAdam';
-  const canvas = get('ink-pad');
-  const pad = canvas.getContext('2d');
-  const writer = get('writer');
-  const inkMode = get('mode-ink');
-  const textMode = get('mode-text');
-  const input = get('note-text');
-  const feedback = get('writer-feedback');
-  const paths = [];
-  let active = null;
-  let writingMode = 'ink';
-
   function bytesToURL(bytes) {
     return btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
   }
@@ -67,14 +55,86 @@
     const last=stroke[stroke.length-1];
     ctx.lineTo(last[0]*scaleX,last[1]*scaleY);ctx.stroke();
   }
-  function redraw() {
-    pad.clearRect(0,0,canvas.width,canvas.height);
-    for(const s of paths) drawStroke(pad,s,canvas.width,canvas.height);
-    if(active) drawStroke(pad,active.points,canvas.width,canvas.height);
-    get('undo').disabled=!paths.length;
+  function bindPad(canvas, undo, feedback, onChange = () => {}) {
+    const pad = canvas.getContext('2d');
+    const paths = [];
+    let active = null;
+    function redraw() {
+      pad.clearRect(0,0,canvas.width,canvas.height);
+      for(const s of paths) drawStroke(pad,s,canvas.width,canvas.height);
+      if(active) drawStroke(pad,active.points,canvas.width,canvas.height);
+      undo.disabled = !paths.length;
+    }
+    function sample(event) {
+      const bounds=canvas.getBoundingClientRect();
+      const quantise=value=>Math.min(255,Math.max(0,Math.round(value*255)));
+      return [quantise((event.clientX-bounds.left)/bounds.width),quantise((event.clientY-bounds.top)/bounds.height)];
+    }
+    function addPoint(event) {
+      const pt=sample(event), arr=active.points, last=arr[arr.length-1];
+      if(!last||Math.hypot(pt[0]-last[0],pt[1]-last[1])>=1.8) arr.push(pt);
+    }
+    function simplify(stroke) {
+      // Remove points on nearly straight lines while retaining corners and pen dots.
+      const kept=[];
+      for(const p of stroke) {
+        kept.push(p);
+        if(kept.length<3) continue;
+        const n=kept.length, a=kept[n-3], b=kept[n-2], dx=p[0]-a[0],dy=p[1]-a[1];
+        const length=dx*dx+dy*dy;
+        const t=length?((b[0]-a[0])*dx+(b[1]-a[1])*dy)/length:-1;
+        if(t>=0 && t<=1 && Math.hypot(b[0]-a[0]-t*dx,b[1]-a[1]-t*dy)<.65 && length<500) kept.splice(n-2,1);
+      }
+      return kept;
+    }
+    canvas.addEventListener('pointerdown',event=>{
+      if(active || !event.isPrimary || event.button!==0) return;
+      if(paths.length>=maxStrokes || pointCount(paths)>=maxPoints){feedback.textContent='The note is full. Undo a stroke or use Type.';return;}
+      active={id:event.pointerId,points:[]};canvas.setPointerCapture(event.pointerId);
+      addPoint(event);redraw();feedback.textContent='';onChange();
+    });
+    canvas.addEventListener('pointermove',event=>{
+      if(!active||event.pointerId!==active.id)return;
+      const events=event.getCoalescedEvents?.() || [];
+      for(const sampleEvent of (events.length?events:[event])) if(active.points.length<maxPoints) addPoint(sampleEvent);
+      redraw();
+    });
+    function finishStroke(event) {
+      if(!active || event.pointerId!==active.id) return;
+      if(event.type==='pointerup') addPoint(event);
+      const stroke=simplify(active.points);
+      const room=maxPoints-pointCount(paths);
+      if(stroke.length>room) feedback.textContent='The note is full. You can undo the last stroke or switch to Type.';
+      if(room>0 && stroke.length) paths.push(stroke.slice(0,room));
+      active=null;redraw();
+    }
+    canvas.addEventListener('pointerup',finishStroke);
+    canvas.addEventListener('pointercancel',finishStroke);
+    canvas.addEventListener('lostpointercapture',finishStroke);
+    undo.addEventListener('click',()=>{paths.pop();redraw();onChange();feedback.textContent='';});
+    return {
+      paths,
+      setPaths(strokes) { paths.splice(0,paths.length,...strokes); redraw(); }
+    };
   }
+
+  window.CardInk = Object.freeze({bindPad, drawStroke, encodeInk, decodeInk, bytesToURL, urlToBytes});
+  if (!get('writer')) return;
+  const defaultNote = get('letter-content').textContent.trim() || 'I keep picturing you at the front of that computer class, keeping a perfectly straight face until the first kid recognised the tune.\n\nI hope I got you back.\n\nAlles Liebe,\nAdam';
+  const canvas = get('ink-pad');
+  const writer = get('writer');
+  const inkMode = get('mode-ink');
+  const textMode = get('mode-text');
+  const input = get('note-text');
+  const feedback = get('writer-feedback');
+  const editor = bindPad(canvas, get('undo'), feedback, () => { get('manual-link').hidden = true; });
+  const paths = editor.paths;
+  let writingMode = 'ink';
+
   function showLetter(text, strokes) {
     const holder=get('letter-content');
+    const defaultArt = document.querySelector('[data-default-art]');
+    if (defaultArt) defaultArt.hidden = Boolean(text || strokes?.length);
     holder.replaceChildren();
     if(strokes?.length) {
       const ink=document.createElement('canvas');
@@ -98,7 +158,7 @@
     } catch { /* A clipped or altered link still opens the original card. */ }
     showLetter(text,strokes);
     if(text){input.value=text;selectMode('text');}
-    if(strokes?.length){paths.splice(0,paths.length,...strokes);redraw();}
+    if(strokes?.length){editor.setPaths(strokes);}
   }
   function selectMode(mode) {
     writingMode=mode;
@@ -107,53 +167,6 @@
     get('ink-pane').hidden=mode!=='ink';get('text-pane').hidden=mode!=='text';
     feedback.textContent='';get('manual-link').hidden=true;
   }
-  function sample(event) {
-    const bounds=canvas.getBoundingClientRect();
-    const quantise=value=>Math.min(255,Math.max(0,Math.round(value*255)));
-    return [quantise((event.clientX-bounds.left)/bounds.width),quantise((event.clientY-bounds.top)/bounds.height)];
-  }
-  function addPoint(event) {
-    const pt=sample(event), arr=active.points, last=arr[arr.length-1];
-    if(!last||Math.hypot(pt[0]-last[0],pt[1]-last[1])>=1.8) arr.push(pt);
-  }
-  function simplify(stroke) {
-    // Remove points on nearly straight lines while retaining corners and pen dots.
-    const kept=[];
-    for(const p of stroke) {
-      kept.push(p);
-      if(kept.length<3) continue;
-      const n=kept.length, a=kept[n-3], b=kept[n-2], dx=p[0]-a[0],dy=p[1]-a[1];
-      const length=dx*dx+dy*dy;
-      const t=length?((b[0]-a[0])*dx+(b[1]-a[1])*dy)/length:-1;
-      if(t>=0 && t<=1 && Math.hypot(b[0]-a[0]-t*dx,b[1]-a[1]-t*dy)<.65 && length<500) kept.splice(n-2,1);
-    }
-    return kept;
-  }
-  canvas.addEventListener('pointerdown',event=>{
-    if(active || !event.isPrimary || event.button!==0) return;
-    if(paths.length>=maxStrokes || pointCount(paths)>=maxPoints){feedback.textContent='The note is full. Undo a stroke or use Type.';return;}
-    active={id:event.pointerId,points:[]};canvas.setPointerCapture(event.pointerId);
-    addPoint(event);redraw();feedback.textContent='';get('manual-link').hidden=true;
-  });
-  canvas.addEventListener('pointermove',event=>{
-    if(!active||event.pointerId!==active.id)return;
-    const events=event.getCoalescedEvents?.() || [];
-    for(const sampleEvent of (events.length?events:[event])) if(active.points.length<maxPoints) addPoint(sampleEvent);
-    redraw();
-  });
-  function finishStroke(event) {
-    if(!active || event.pointerId!==active.id) return;
-    if(event.type==='pointerup') addPoint(event);
-    const stroke=simplify(active.points);
-    const room=maxPoints-pointCount(paths);
-    if(stroke.length>room) feedback.textContent='The note is full. You can undo the last stroke or switch to Type.';
-    if(room>0 && stroke.length) paths.push(stroke.slice(0,room));
-    active=null;redraw();
-  }
-  canvas.addEventListener('pointerup',finishStroke);
-  canvas.addEventListener('pointercancel',finishStroke);
-  canvas.addEventListener('lostpointercapture',finishStroke);
-  get('undo').addEventListener('click',()=>{paths.pop();redraw();get('manual-link').hidden=true;feedback.textContent='';});
   inkMode.addEventListener('click',()=>selectMode('ink'));
   textMode.addEventListener('click',()=>{selectMode('text');input.focus();});
   input.addEventListener('input',()=>{get('manual-link').hidden=true;feedback.textContent='';});

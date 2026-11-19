@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#173c3c"><meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Card Press">
+<title>Card Press · Musikarchiv</title>
+<link rel="apple-touch-icon" href="/cello-housewarming/assets/touch.png"><link rel="icon" href="/cello-housewarming/assets/touch.png">
+<link rel="manifest" href="app.webmanifest"><link rel="stylesheet" href="maker.css">
+<script src="/harp-studies-71/note.js?press=1" defer></script><script src="edition.js" defer></script><script src="maker.js" defer></script>
+</head><body>
+<header class="top"><a class="brand" href="./" aria-label="Card Press home"><span aria-hidden="true">✳</span> Musikarchiv</a><button id="new" type="button">New card <b aria-hidden="true">＋</b></button></header>
+<main class="workbench">
+<section class="sleeve" aria-label="Card cover preview">
+  <div class="sleeve-paper">
+    <span class="imprint">Card Press</span>
+    <h1 id="hero-title">Welcome home!</h1>
+    <div class="hero-to" id="hero-to">From Adam</div>
+    <img class="sleeve-art" id="sleeve-art" alt="" src="/cello-housewarming/assets/doorway.webp">
+  </div>
+  <button class="record" id="disc-preview" type="button" aria-label="Preview this musical card"><img id="hero-disk" src="/cello-housewarming/assets/disk.webp" alt=""></button>
+</section>
+<section class="editor" aria-label="Make your musical card">
+  <div class="select-row"><label for="theme">Disk</label><select id="theme"><option value="cello">Island cello</option><option value="harp">Garden harp</option></select></div>
+  <div class="form">
+    <div class="people"><label>To<input id="to" maxlength="40" placeholder="Their name" autocomplete="off" enterkeyhint="next"></label><label>From<input id="from" maxlength="40" value="Adam" autocomplete="off" enterkeyhint="next"></label></div>
+    <label>On the cover<input id="greeting" maxlength="60" value="Welcome home!" enterkeyhint="next"></label>
+    <label>Inside the card<textarea id="note" rows="2" maxlength="480" placeholder="A few words in your own voice…"></textarea></label>
+    <div class="art-row">
+      <div class="sample" id="sample" hidden></div>
+      <div class="art-entry">
+        <span id="art-name">Artwork</span>
+        <div class="art-actions">
+          <button id="draw" type="button">Handwrite</button>
+          <label class="file-button">Photo<input id="photo" type="file" accept="image/*" aria-label="Add a photo or screenshot"></label>
+          <button type="button" id="remove-art" hidden>Remove</button>
+        </div>
+      </div>
+    </div>
+    <details id="music"><summary><span>Music</span><span id="track-name">La Isla Bonita · HAUSER</span></summary>
+      <label class="music-field">Use a different YouTube recording<input id="video" type="url" placeholder="Paste video link" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
+      <p class="hint">Leave blank to use the disk’s recording.</p>
+    </details>
+    <p id="feedback" role="status"></p>
+    <div id="manual" hidden><label>Copy your finished gift link<input id="share-link" readonly></label></div>
+  </div>
+  <div class="bar"><button type="button" class="secondary" id="preview">Preview</button><button type="button" class="primary" id="share">Share card</button></div>
+</section></main>
+<dialog id="ink-dialog"><div class="sheet"><div class="sheet-head"><h2>Handwrite</h2><button class="close" type="button" data-close aria-label="Cancel handwriting">×</button></div>
+<p class="hint">Use your finger or Apple Pencil.</p>
+<canvas id="pad" width="720" height="400" aria-label="Handwriting pad" role="img"></canvas>
+<p class="hint" id="ink-feedback" role="status"></p><div class="sheet-actions"><button class="secondary" id="undo" type="button" disabled>Undo</button><button id="use-ink" class="primary" type="button">Use handwriting</button></div></div></dialog>
+<dialog id="photo-dialog"><div class="sheet"><div class="sheet-head"><h2>Place photo</h2><button class="close" type="button" data-close aria-label="Cancel photo">×</button></div>
+<p class="hint">Drag across the part to keep, or use the whole picture.</p>
+<div class="crop-wrap" id="crop-wrap"><img id="source-photo" alt="Photo to crop" draggable="false"><span id="crop-box" hidden></span></div>
+<div class="sheet-actions"><button class="secondary" id="full-photo" type="button">Whole photo</button><button class="primary" id="use-photo" type="button">Use photo</button></div></div></dialog>
+<dialog id="preview-dialog"><div class="preview-tools"><button type="button" data-close>Back to editing</button><button class="primary" id="preview-share" type="button">Share card</button></div>
+<iframe id="preview-frame" title="Recipient’s view of your card" allow="autoplay; fullscreen"></iframe></dialog>
+<dialog id="new-dialog"><div class="sheet"><h2>Start a new card?</h2><p>Your current draft will be replaced. Gift links you’ve shared still work.</p><div class="sheet-actions"><button type="button" class="secondary" data-close>Keep editing</button><button type="button" class="primary" id="reset">Start fresh</button></div></div></dialog>
+<noscript><p>This card maker needs JavaScript. Open it in Safari to edit a card.</p></noscript>
+</body></html>

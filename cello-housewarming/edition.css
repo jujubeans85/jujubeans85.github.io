@@ -32,3 +32,6 @@ h1 { font-size: clamp(68px, 7vw, 96px); }
   .cover-art { width: 54%; height: 84%; right: 1%; bottom: 1.2%; }
   h1 { font-size: clamp(46px, 12.8vw, 64px); }
 }
+
+.new-pad-art { display: block; width: 100%; height: auto; margin: 16px 0 18px; border-radius: 5px; }
+.studio-link { display: inline-flex; align-items: center; min-height: 44px; color: #315b50; font: 14px var(--sans); }
