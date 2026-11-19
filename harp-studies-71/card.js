@@ -47,13 +47,15 @@
     resetPlayer();
     const generation = videoGeneration;
     const frame = document.createElement('iframe');
-    frame.title = 'Naomi SV performing a solo harp cover';
+    const videoId = new URL(fallback.href).searchParams.get('v');
+    if (!videoId || !/^[A-Za-z0-9_-]{11}$/.test(videoId)) return;
+    frame.title = fallback.dataset.title || get('performer').textContent.trim() + ' performance';
     frame.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
     frame.allowFullscreen = true;
     frame.referrerPolicy = 'strict-origin-when-cross-origin';
     frame.tabIndex = -1;
     const params = new URLSearchParams({autoplay:'1',playsinline:'1',rel:'0',enablejsapi:'1',origin:location.origin});
-    frame.src = 'https://www.youtube-nocookie.com/embed/BF7rCEgvJ5M?' + params;
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?' + params;
     well.appendChild(frame);
     embedTimer = setTimeout(() => { if (videoGeneration === generation) resetPlayer(); }, 10500);
     loadPlayerAPI().then(YT => {
@@ -71,7 +73,7 @@
   document.querySelector('.video-nav a').addEventListener('click', resetPlayer);
 
   function driveClick() {
-    // A short, original latch-and-seek sound. The music is Naomi's official performance.
+    // A short, original latch-and-seek sound.
     if (reduceMotion.matches) return;
     try {
       const Context = window.AudioContext || window.webkitAudioContext;

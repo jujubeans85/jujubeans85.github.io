@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#163638">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>La Isla Bonita · A housewarming gift from Adam</title>
+<meta name="description" content="A little cello music for your new place. A housewarming card from Adam.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Musikarchiv">
+<meta property="og:title" content="La Isla Bonita · Welcome home">
+<meta property="og:description" content="Slide in the disk for a housewarming tune from Adam.">
+<meta property="og:url" content="https://jujubeans85.github.io/cello-housewarming/">
+<meta property="og:image" content="https://jujubeans85.github.io/cello-housewarming/assets/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La Isla Bonita. A cello by an open island doorway, and a turquoise floppy disk.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://jujubeans85.github.io/cello-housewarming/">
+<link rel="apple-touch-icon" href="assets/touch.png">
+<link rel="icon" href="assets/touch.png" type="image/png">
+<link rel="stylesheet" href="../harp-studies-71/card.css">
+<link rel="stylesheet" href="edition.css">
+<script src="../harp-studies-71/note.js?edition=2" defer></script>
+<script src="../harp-studies-71/card.js?edition=2" defer></script>
+</head>
+<body>
+<main class="folio" aria-label="A musical housewarming card from Adam">
+  <section class="cover" aria-labelledby="cover-title">
+    <div class="press">
+      <span class="press-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="24" height="24" fill="none"><g stroke="currentColor" stroke-width="1.4"><circle cx="16" cy="16" r="11.6"/><path d="M16 1v30M1 16h30M5.4 5.4l21.2 21.2M26.6 5.4 5.4 26.6"/><path d="M16 6.5 19 13l6.5 3-6.5 3-3 6.5-3-6.5-6.5-3 6.5-3Z"/></g><circle cx="16" cy="16" r="2" fill="currentColor"/></svg></span>
+      <span lang="de">Musikarchiv</span>
+      <span class="edition">Housewarming edition</span>
+    </div>
+    <div class="cover-art" aria-hidden="true"><img src="assets/doorway.webp" alt=""></div>
+    <div class="title-block">
+      <p class="eyebrow">For violoncello</p>
+      <h1 id="cover-title" lang="es">La Isla <em>Bonita</em></h1>
+    </div>
+    <div class="dedication">
+      <p>Welcome<br><em>home.</em></p>
+      <span class="signature">From Adam</span>
+    </div>
+    <div class="hinge" aria-hidden="true"></div>
+  </section>
+  <section class="deck" id="deck" aria-label="Musical disk player" data-state="ready">
+    <div class="drive">
+      <div class="drive-title"><span><i class="lamp" aria-hidden="true"></i>Drive A</span><span id="status" role="status">Ready</span></div>
+      <div class="slot" aria-hidden="true"></div>
+      <i class="screw left" aria-hidden="true"></i><i class="screw right" aria-hidden="true"></i>
+    </div>
+    <div class="tray">
+      <div class="tray-etch" aria-hidden="true"></div>
+      <div class="loading-cue" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="disk-window">
+        <button class="disk" id="disk" aria-label="Insert the La Isla Bonita cello disk" type="button">
+          <img src="assets/disk.webp" width="600" height="600" alt="A teal floppy disk with a La Isla Bonita cello label." draggable="false">
+        </button>
+      </div>
+    </div>
+    <div class="controls" id="ready-controls">
+      <button class="insert" id="insert" type="button"><span class="insert-icon" aria-hidden="true">↑</span> Insert disk</button>
+      <p>Or slide the disk into the drive.</p>
+    </div>
+    <section class="performance" id="performance" aria-labelledby="performer" hidden>
+      <div class="perform-head">
+        <span class="micro">Side A</span>
+        <h2 id="performer">HAUSER</h2>
+        <span class="perform-sub">Cello</span>
+      </div>
+      <div id="video" class="screen">
+        <div class="embed-well" id="embed-well"></div>
+        <a class="player-cover" id="recording-link" data-title="HAUSER plays La Isla Bonita on cello" href="https://www.youtube.com/watch?v=OC7K61KUj8g" target="_blank" rel="noopener">
+          <span class="play-medallion" aria-hidden="true">▶</span><span>Play the recording <span aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+      <div class="video-nav"><a href="https://www.youtube.com/watch?v=OC7K61KUj8g" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
+      <div class="reveal-actions">
+        <button class="letter-button" id="open-note" type="button"><span class="envelope-icon" aria-hidden="true"></span> A note from Adam</button>
+        <button class="eject" id="eject" type="button"><span aria-hidden="true">⏏</span> Eject</button>
+      </div>
+    </section>
+    <noscript><a class="no-script-play" href="https://www.youtube.com/watch?v=OC7K61KUj8g">Play La Isla Bonita on cello ↗</a></noscript>
+  </section>
+</main>
+<button class="back-to-write" id="back-to-write" type="button" hidden>Return to your note</button>
+<dialog id="letter" class="letter-dialog" aria-labelledby="letter-heading">
+  <article class="letter-paper">
+    <button class="close-dialog" type="button" id="close-letter" aria-label="Close note">×</button>
+    <div class="letter-head"><span class="micro">Housewarming post</span><span class="postmark" aria-hidden="true">A</span></div>
+    <h2 id="letter-heading">A note from <em>Adam</em></h2>
+    <div id="letter-content">The boxes can wait one song.
+
+Turn this up and have a little kitchen dance. I hope the new place feels like yours from the very first night.
+
+Happy housewarming!
+Adam</div>
+  </article>
+</dialog>
+<dialog id="writer" class="writer-dialog" aria-labelledby="writer-title">
+  <div class="writer-panel">
+    <button type="button" id="close-writer" class="close-dialog" aria-label="Preview the card">×</button>
+    <span class="micro">Inside the card</span>
+    <h2 id="writer-title">Your <em>note</em></h2>
+    <div class="modes" role="group" aria-label="Choose how to write"><button id="mode-ink" type="button" aria-pressed="true">Handwrite</button><button id="mode-text" type="button" aria-pressed="false">Type</button></div>
+    <div id="ink-pane">
+      <p class="writer-hint">Write with your finger in the space below.</p>
+      <div class="pad-wrap"><canvas id="ink-pad" width="720" height="400" role="img" aria-label="Space for a handwritten housewarming note"></canvas></div>
+      <button id="undo" class="small-link" type="button" disabled>Undo last stroke</button>
+    </div>
+    <div id="text-pane" hidden>
+      <label class="writer-hint" for="note-text">What would you like to write?</label>
+      <textarea id="note-text" maxlength="480" rows="5" placeholder="Your words here…"></textarea>
+    </div>
+    <div class="writer-bottom"><button id="share-note" class="solid-button" type="button">Share finished card</button><button id="copy-note" class="small-link" type="button">Copy link</button></div>
+    <p id="writer-feedback" class="feedback" role="status"></p>
+    <div id="manual-link" hidden><label for="link-text">Select and copy your card link</label><input id="link-text" readonly></div>
+  </div>
+</dialog>
+</body>
+</html>

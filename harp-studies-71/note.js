@@ -4,7 +4,7 @@
   const maxText = 480;
   const maxPoints = 1800;
   const maxStrokes = 220;
-  const defaultNote = 'I keep picturing you at the front of that computer class, keeping a perfectly straight face until the first kid recognised the tune.\n\nI hope I got you back.\n\nAlles Liebe,\nAdam';
+  const defaultNote = get('letter-content').textContent.trim() || 'I keep picturing you at the front of that computer class, keeping a perfectly straight face until the first kid recognised the tune.\n\nI hope I got you back.\n\nAlles Liebe,\nAdam';
   const canvas = get('ink-pad');
   const pad = canvas.getContext('2d');
   const writer = get('writer');
@@ -79,7 +79,7 @@
     if(strokes?.length) {
       const ink=document.createElement('canvas');
       ink.width=900;ink.height=500;ink.className='ink-image';
-      ink.setAttribute('role','img');ink.setAttribute('aria-label','A handwritten birthday note from Adam');
+      ink.setAttribute('role','img');ink.setAttribute('aria-label','A handwritten note from Adam');
       const ctx=ink.getContext('2d');
       for(const stroke of strokes) drawStroke(ctx,stroke,ink.width,ink.height);
       holder.appendChild(ink);
@@ -95,7 +95,7 @@
       const hash=new URLSearchParams(location.hash.slice(1));
       if(hash.has('t')) text=new TextDecoder('utf-8',{fatal:true}).decode(urlToBytes(hash.get('t'))).slice(0,maxText);
       else if(hash.has('i')) strokes=decodeInk(hash.get('i'));
-    } catch { /* A clipped or altered link still opens the original birthday card. */ }
+    } catch { /* A clipped or altered link still opens the original card. */ }
     showLetter(text,strokes);
     if(text){input.value=text;selectMode('text');}
     if(strokes?.length){paths.splice(0,paths.length,...strokes);redraw();}
