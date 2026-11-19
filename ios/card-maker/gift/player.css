@@ -1,0 +1,13 @@
+.cover .cover-art.custom-cover{display:grid;place-items:center;width:49%;height:61%;right:4%;bottom:6%;aspect-ratio:auto;mask-image:none;-webkit-mask-image:none;mix-blend-mode:normal}
+.cover .custom-cover :is(img,canvas){width:100%;height:100%;object-fit:contain;object-position:center;mask-image:none;-webkit-mask-image:none;filter:none}
+.deck:is([data-motion=spin],[data-motion=needle],[data-motion=reels]) .slot{height:3px;background:#c1b18a;box-shadow:0 1px 1px #253a36}
+.deck:is([data-motion=spin],[data-motion=needle],[data-motion=reels]) #disk{cursor:pointer;touch-action:manipulation;--angle:0deg}
+.deck:is([data-motion=spin],[data-motion=needle],[data-motion=reels])[data-state=reading] #disk{transform:translateX(-50%)}
+.deck[data-motion=spin][data-state=reading] .carrier-face,.deck[data-motion=reels][data-state=reading] .spool{animation:spin-carrier .72s ease-in both}
+.deck[data-motion=needle][data-state=reading] .gram-neck{transform-origin:top right;animation:lower-needle .62s ease-out both}
+.deck[data-motion=feed][data-state=reading] .piano-paper .perforation{animation:feed-roll .3s linear infinite}
+@keyframes spin-carrier{to{transform:rotate(1turn)}}
+@keyframes lower-needle{to{transform:rotate(5deg) translate(-6%,7%)}}
+@keyframes feed-roll{to{transform:translateY(-90%)}}
+@media(max-width:700px){.cover .cover-art.custom-cover{width:42%;height:65%;right:4%;bottom:3%}}
+@media(prefers-reduced-motion:reduce){.deck[data-state=reading] .carrier *{animation:none!important;transition:none!important}}

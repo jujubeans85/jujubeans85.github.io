@@ -5,8 +5,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Card Press">
 <title>Card Press · Musikarchiv</title>
 <link rel="apple-touch-icon" href="/cello-housewarming/assets/touch.png"><link rel="icon" href="/cello-housewarming/assets/touch.png">
-<link rel="manifest" href="app.webmanifest"><link rel="stylesheet" href="maker.css">
-<script src="/harp-studies-71/note.js?press=1" defer></script><script src="edition.js" defer></script><script src="maker.js" defer></script>
+<link rel="manifest" href="app.webmanifest"><link rel="stylesheet" href="maker.css?v=2">
+<script src="/harp-studies-71/note.js?press=1" defer></script><link rel="stylesheet" href="formats.css?v=2"><script src="formats.js?v=2" defer></script><script src="edition.js?v=2" defer></script><script src="maker.js?v=2" defer></script>
 </head><body>
 <header class="top"><a class="brand" href="./" aria-label="Card Press home"><span aria-hidden="true">✳</span> Musikarchiv</a><button id="new" type="button">New card <b aria-hidden="true">＋</b></button></header>
 <main class="workbench">
@@ -15,12 +15,16 @@
     <span class="imprint">Card Press</span>
     <h1 id="hero-title">Welcome home!</h1>
     <div class="hero-to" id="hero-to">From Adam</div>
+    <span id="cover-artwork" class="cover-artwork" hidden></span>
     <img class="sleeve-art" id="sleeve-art" alt="" src="/cello-housewarming/assets/doorway.webp">
   </div>
-  <button class="record" id="disc-preview" type="button" aria-label="Preview this musical card"><img id="hero-disk" src="/cello-housewarming/assets/disk.webp" alt=""></button>
+  <button class="record" id="disc-preview" type="button" aria-label="Preview this musical card"><span id="hero-medium"></span></button>
 </section>
 <section class="editor" aria-label="Make your musical card">
-  <div class="select-row"><label for="theme">Disk</label><select id="theme"><option value="cello">Island cello</option><option value="harp">Garden harp</option></select></div>
+  <div class="select-row">
+    <label for="format">Format<select id="format"></select></label>
+    <label for="theme">Sleeve<select id="theme"><option value="cello">Island cello</option><option value="harp">Garden harp</option></select></label>
+  </div>
   <div class="form">
     <div class="people"><label>To<input id="to" maxlength="40" placeholder="Their name" autocomplete="off" enterkeyhint="next"></label><label>From<input id="from" maxlength="40" value="Adam" autocomplete="off" enterkeyhint="next"></label></div>
     <label>On the cover<input id="greeting" maxlength="60" value="Welcome home!" enterkeyhint="next"></label>
@@ -31,14 +35,19 @@
         <span id="art-name">Artwork</span>
         <div class="art-actions">
           <button id="draw" type="button">Handwrite</button>
-          <label class="file-button">Photo<input id="photo" type="file" accept="image/*" aria-label="Add a photo or screenshot"></label>
+          <label class="file-button">Load photo<input id="photo" type="file" accept="image/*" aria-label="Add a photo or screenshot"></label>
           <button type="button" id="remove-art" hidden>Remove</button>
         </div>
       </div>
     </div>
+    <div class="placement-row" id="placement-row" hidden>
+      <label for="placement">Show artwork on</label>
+      <select id="placement"><option value="all">Cover, label &amp; inside</option><option value="cover">Cover only</option><option value="label">Media label only</option><option value="inside">Inside only</option></select>
+      <a id="save-art" download>Save artwork</a>
+    </div>
     <details id="music"><summary><span>Music</span><span id="track-name">La Isla Bonita · HAUSER</span></summary>
       <label class="music-field">Use a different YouTube recording<input id="video" type="url" placeholder="Paste video link" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
-      <p class="hint">Leave blank to use the disk’s recording.</p>
+      <p class="hint">Leave blank to use the sleeve’s recording.</p>
     </details>
     <p id="feedback" role="status"></p>
     <div id="manual" hidden><label>Copy your finished gift link<input id="share-link" readonly></label></div>

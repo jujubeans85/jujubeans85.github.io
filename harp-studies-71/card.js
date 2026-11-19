@@ -108,7 +108,7 @@
     deck.dataset.state = 'reading';
     controls.inert = true;
     disk.tabIndex = -1;
-    status.textContent = 'Reading…';
+    status.textContent = deck.dataset.busy || 'Reading…';
     driveClick();
     startPlayer();
     revealTimer = setTimeout(() => {
@@ -116,7 +116,7 @@
       deck.dataset.state = 'loaded';
       performancePanel.hidden = false;
       controls.hidden = true;
-      status.textContent = 'Disk loaded';
+      status.textContent = deck.dataset.loaded || 'Disk loaded';
       const heading = get('performer');
       heading.tabIndex = -1;
       heading.focus({preventScroll:true});
@@ -145,6 +145,7 @@
   });
   disk.addEventListener('pointerdown', event => {
     if (deck.dataset.state !== 'ready' || drag || !event.isPrimary || event.button !== 0) return;
+    if (deck.dataset.motion && !['slide','feed'].includes(deck.dataset.motion)) return;
     moved = false;
     drag = {id:event.pointerId,startY:event.clientY,offset:0};
     disk.setPointerCapture(event.pointerId);

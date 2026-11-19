@@ -1,0 +1,50 @@
+/* All carriers use the same square coordinate system in the editor and the player. */
+.carrier{display:block;position:relative;width:100%;height:100%;pointer-events:none;user-select:none;container-type:inline-size}
+.carrier *{box-sizing:border-box}
+.carrier-face,.carrier-face>span,.piano-paper i,.perforation{position:absolute;display:block}
+.carrier-face{inset:2%;isolation:isolate}
+.carrier-label{overflow:hidden;display:grid!important;place-items:center;text-align:center;padding:2%;background:#f1ddae;color:#253c37;font:italic 700 clamp(8px,8cqi,22px)/1 Georgia,serif;letter-spacing:-.035em;text-wrap:balance;overflow-wrap:anywhere;box-shadow:inset 0 0 0 1px #28251f4a}
+.carrier .carrier-label[hidden]{display:none!important}
+.carrier .carrier-label.has-art{padding:0;background:#faf2dc}
+.carrier .carrier-label :is(img,canvas){display:block;width:100%;height:100%;object-fit:contain;border:0;border-radius:inherit}
+.carrier-disk .carrier-face{inset:0}
+.carrier-disk .carrier-face>img{width:100%;height:100%;display:block}
+.carrier-disk .carrier-label{left:13%;right:10%;top:44%;bottom:8%;border-radius:4%}
+.carrier-vinyl .carrier-face,.carrier-cd .carrier-face{inset:3%;border-radius:50%}
+.carrier-vinyl .carrier-face{border:2px solid #15191b;background:repeating-radial-gradient(circle at center,transparent 0 1%,#ffffff1b 1.2%,transparent 1.6%),conic-gradient(from -28deg,#17181b 0deg,#51545a 34deg,#181b20 63deg,#090e12 128deg,#42474a 182deg,#141a21 209deg,#0b1013 322deg,#17181b);box-shadow:inset 0 0 0 3px #171719}
+.carrier-vinyl .carrier-label,.carrier-cd .carrier-label{inset:32%;border-radius:50%;background:#d98567;padding:5%;font-size:clamp(7px,5.8cqi,17px)}
+.spindle{inset:48%;border-radius:50%;background:#234442;box-shadow:inset 1px 2px 1px #111}
+.carrier-cd .carrier-face{background:radial-gradient(circle,transparent 0 63%,#ffffff5d 65%,transparent 67%),conic-gradient(from 16deg,#d5d2bc,#fbfaf0 22deg,#8fc0c4 47deg,#b08bab 64deg,#e3d0aa 83deg,#c2c5c6 106deg,#646d77 148deg,#fffce5 173deg,#a2c5ac 194deg,#a4bad5 226deg,#f5dbcd 253deg,#e3dce0 280deg,#a4aba6 321deg,#d5d2bc);border:1px solid #ffffe4;box-shadow:inset 0 0 0 3px #b8bcb9}
+.carrier-cd .carrier-label{inset:27%;background:#f7f1dd;color:#3a4a53;padding:3% 4% 12%}
+.carrier-cd .spindle{inset:43.5%;background:#325350;border:2px solid #e3e7db;box-shadow:0 0 0 2px #96a2a3,inset 0 0 0 1px #666c63}
+.carrier-vhs .carrier-face,.carrier-tape .carrier-face{inset:20% 1%;border-radius:4%;border:2px solid #20262a;background:linear-gradient(155deg,#515558,#262b30 48%,#171d20);box-shadow:inset 0 2px 1px #909698,inset 0 -4px 1px #161719}
+.carrier-vhs .carrier-face:before,.carrier-tape .carrier-face:before,.carrier-reel .carrier-face:before{content:"";position:absolute;inset:4%;background:radial-gradient(circle at 2% 3%,#d3c7ad 0 .8%,transparent 1.4%),radial-gradient(circle at 98% 3%,#cfc5b2 0 .8%,transparent 1.4%),radial-gradient(circle at 2% 97%,#bbb298 0 .8%,transparent 1.4%),radial-gradient(circle at 98% 97%,#cfc5af 0 .8%,transparent 1.4%)}
+.carrier-vhs .carrier-face:after{content:"";position:absolute;inset:7% 5% 76%;background:repeating-linear-gradient(0deg,#4b5050 0 1px,#282f31 1px 3px);border-radius:2px}
+.spool{border-radius:50%;aspect-ratio:1}
+.carrier-vhs .spool{width:28%;top:28%;background:radial-gradient(circle,#232b2d 0 10%,#d5cfb7 11% 25%,#968e79 26% 30%,#272827 31% 54%,#393c3d 55% 60%,#9da49c 62%,#333 66%);box-shadow:inset 0 0 0 1px #838784}
+.spool-left{left:6%}.spool-right{right:6%}
+.carrier-vhs .carrier-label{inset:26% 30% 18%;font-size:clamp(8px,5.6cqi,17px);border-left:3px solid #c46e50}
+.carrier-tape .carrier-face{inset:18% 2%;background:linear-gradient(140deg,#cba56d,#d7ba84 45%,#876c4e);border-color:#6a604a}
+.carrier-tape .carrier-face:after{content:"";position:absolute;inset:73% 13% 2%;background:radial-gradient(circle at 15% 64%,#302c27 0 4%,transparent 5%),radial-gradient(circle at 85% 64%,#302c27 0 4%,transparent 5%),linear-gradient(#baa177,#d1b888);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);border:1px solid #846c50}
+.carrier-tape .spool{width:17%;top:41%;background:radial-gradient(circle,#333 0 21%,transparent 22%),repeating-conic-gradient(#f6eaca 0 34deg,#7b776e 35deg 60deg);border:3px solid #57564f;box-shadow:0 0 0 2px #d5cbb0}
+.carrier-tape .spool-left{left:14%}.carrier-tape .spool-right{right:14%}
+.carrier-tape .carrier-label{inset:9% 8% 61%;background:#f5e8c8;border-bottom:3px solid #b86645;font-size:clamp(8px,5.8cqi,17px)}
+.carrier-tape .carrier-label:after{content:none}
+.carrier-reel .carrier-face{inset:9% 0 6%;border:2px solid #604938;border-radius:6%;background:linear-gradient(132deg,#ddd5b8,#a5aca0 56%,#c1bcaa 73%);box-shadow:inset 4px 0 #7c5946,inset -4px 0 #7c5946,inset 0 -4px #523f34}
+.carrier-reel .spool{top:10%;width:43%;border:1px solid #675d48;background:radial-gradient(circle,#70583b 0 7%,#e9d8a9 8% 13%,transparent 14%),radial-gradient(ellipse at 50% 23%,#624c36 0 11%,transparent 12%),radial-gradient(ellipse at 26% 65%,#624c36 0 11%,transparent 12%),radial-gradient(ellipse at 74% 65%,#624c36 0 11%,transparent 12%),conic-gradient(#b1b4a1,#ebe7ce,#949d93,#e2d9be,#b1b4a1);box-shadow:0 2px 2px #504c41}
+.carrier-reel .spool-left{left:5%}.carrier-reel .spool-right{right:5%}
+.carrier-reel .carrier-face:after{content:"";position:absolute;inset:56% 20% 33%;border:2px solid #664331;border-top:0;border-radius:0 0 40% 40%}
+.carrier-reel .carrier-label{inset:72% 14% 7%;background:#3f5853;color:#fff1d5;font-size:clamp(8px,5.5cqi,17px)}
+.carrier-gramophone .carrier-face{inset:1% 6% 3%}
+.gram-cabinet{inset:68% 3% 0;border-radius:4%;border:2px solid #603e2c;background:repeating-linear-gradient(3deg,transparent 0 4px,#55321f44 5px 6px),linear-gradient(100deg,#975e38,#6b422e 55%,#b47e4a);box-shadow:inset 0 4px #cba36c,inset 0 -4px #42291e}
+.gram-platter{inset:58% 11% 24%;border-radius:50%;background:repeating-radial-gradient(ellipse,#292a25 0 5%,#505047 6% 8%);border:2px solid #837051}
+.gram-neck{inset:34% 14% 33% 59%;border:5px solid #bc924e;border-top:0;border-left:0;border-radius:0 0 80% 35%;transform:rotate(-14deg)}
+.gram-horn{inset:1% 15% 40% 6%;transform:rotate(-19deg);border-radius:49%;border:3px solid #d4a75f;background:radial-gradient(ellipse at 61% 65%,#54381c 0 4%,#6e4723 7%,transparent 40%),repeating-conic-gradient(from -11deg at 61% 65%,#99703d 0deg,#ddb475 17deg,#c39450 31deg,#8f612e 40deg);box-shadow:inset 1px 2px 5px #6b4b28,0 2px 1px #745835}
+.carrier-gramophone .carrier-label{inset:76% 18% 6%;background:#c9a46b;color:#432e26;font-size:clamp(8px,5.25cqi,16px);border-radius:8%}
+.carrier-pianola .carrier-face{inset:2% 7% 1%;border:3px solid #5f4936;border-radius:4%;background:linear-gradient(90deg,#745337,#b28a5f 10%,#543b2c 18%,#654935 82%,#aa8558 91%,#705139)}
+.piano-paper{inset:10% 12% 22%;background:linear-gradient(90deg,#d7bb88,#f6e8be 13%,#eddbb0 86%,#c7ac79);overflow:hidden}
+.perforation{width:2.3%;background:#74603e;border-radius:1px}
+.piano-roller{left:7%;right:7%;height:8%;border-radius:15%;background:linear-gradient(#816541,#f2d6a0 35%,#d0b380 68%,#846945);box-shadow:0 2px 2px #39291d77}
+.piano-roller.upper{top:6%}.piano-roller.lower{bottom:20%}
+.piano-keys{inset:85% 5% 3%;background:repeating-linear-gradient(90deg,transparent 0 8%,#33342f 8% 13%,transparent 13% 15%) top/100% 54% no-repeat,repeating-linear-gradient(90deg,#f2e8d1 0 6%,#635d50 6% 6.7%);border:1px solid #392d23}
+.carrier-pianola .carrier-label{inset:53% 18% 26%;background:#f0d6a3;font-size:clamp(8px,5.25cqi,16px)}

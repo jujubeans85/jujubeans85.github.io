@@ -10,9 +10,15 @@
     const saved = JSON.parse(localStorage.getItem(storageKey));
     if (saved?.card) {
       card = clean(saved.card);
+      // Previously loaded photos were only visible as a thumbnail in the editor.
+      if (!saved.card.placement && card.art.startsWith('j')) card.placement = 'all';
       musicInput = String(saved.musicInput || '').slice(0,1000);
     }
   } catch { /* A new card is usable with storage disabled. */ }
+
+  for (const [id, format] of Object.entries(CardFormats.formats)) {
+    $('format').add(new Option(format.name, id));
+  }
 
   function save() {
     try { localStorage.setItem(storageKey,JSON.stringify({card,musicInput})); }
@@ -23,11 +29,26 @@
   }
   function updateSleeve() {
     const theme=editions[card.theme];
-    $('hero-title').textContent=card.greeting.trim() || theme.greeting;
+    const title=$('hero-title');
+    title.textContent=card.greeting.trim() || theme.greeting;
+    title.classList.toggle('long-title',title.textContent.length>26);
     $('hero-to').textContent=[card.to.trim() && 'For '+card.to.trim(),card.from.trim() && 'From '+card.from.trim()].filter(Boolean).join(' · ') || 'For you';
   }
   function updateArt() {
     displayArt($('sample'),card.art);
+    const front = CardEdition.includesArt(card,'cover');
+    displayArt($('cover-artwork'),front ? card.art : '');
+    $('sleeve-art').hidden = front;
+    $('placement-row').hidden = !card.art;
+    $('placement').value = card.placement;
+    const sample = $('sample').firstElementChild;
+    const saveArt = $('save-art');
+    if (sample) {
+      const ink = sample.tagName === 'CANVAS';
+      saveArt.href = ink ? sample.toDataURL('image/png') : sample.src;
+      saveArt.download = 'Card-artwork.' + (ink ? 'png' : card.art === 'pad' ? 'webp' : 'jpg');
+    } else saveArt.removeAttribute('href');
+    CardFormats.render($('hero-medium'),card);
     $('art-name').textContent=card.art==='pad' ? 'Happy New-Pad' : card.art.startsWith('i') ? 'Your handwriting' : card.art.startsWith('j') ? 'Your photo' : 'Add artwork';
     $('remove-art').hidden=!card.art;
   }
@@ -36,7 +57,7 @@
     $('theme').value=card.theme;
     for(const field of fields) $(field).value=card[field];
     $('video').value=musicInput;
-    $('hero-disk').src=theme.path+'assets/'+theme.disk;
+    $('format').value=card.format;
     $('sleeve-art').src=theme.path+'assets/'+(card.theme==='cello' ? 'doorway.webp' : 'plate.webp');
     $('track-name').textContent=musicInput.trim() ? 'Your recording' : theme.track;
     updateSleeve();updateArt();
@@ -46,17 +67,27 @@
       card[field]=$(field).value;clearFeedback();updateSleeve();save();
     });
   }
+  $('format').addEventListener('change',()=>{
+    card.format=$('format').value;
+    clearFeedback();CardFormats.render($('hero-medium'),card);save();
+  });
+  $('placement').addEventListener('change',()=>{
+    card.placement=$('placement').value;
+    clearFeedback();updateArt();save();
+  });
   $('theme').addEventListener('change',()=>{
     const previous=editions[card.theme],next=editions[$('theme').value];
     if (card.greeting===previous.greeting) card.greeting=next.greeting;
-    if (card.art===previous.art) card.art=next.art;
+    if (card.art===previous.art) {card.art=next.art;card.placement='inside';}
     card.theme=$('theme').value;
     clearFeedback();render();save();
   });
   $('video').addEventListener('input',()=>{
     musicInput=$('video').value;
     $('track-name').textContent=musicInput.trim() ? 'Your recording' : editions[card.theme].track;
-    $('video').removeAttribute('aria-invalid');clearFeedback();save();
+    $('video').removeAttribute('aria-invalid');clearFeedback();
+    try {card.video=readVideo(musicInput);} catch {card.video='';}
+    CardFormats.render($('hero-medium'),card);save();
   });
   $('remove-art').addEventListener('click',()=>{card.art='';clearFeedback();updateArt();save();});
 
@@ -67,6 +98,7 @@
   });
   $('use-ink').addEventListener('click',()=>{
     if (!pad.paths.length) { $('ink-feedback').textContent='Add a stroke first.';return; }
+    if (!card.art || card.art==='pad') card.placement='all';
     card.art='i'+CardInk.encodeInk(pad.paths);clearFeedback();updateArt();save();$('ink-dialog').close();
   });
 
@@ -133,7 +165,11 @@
     throw Error('Try a tighter crop or a smaller picture.');
   }
   $('use-photo').addEventListener('click',()=>{
-    try {card.art=packPhoto();clearFeedback();updateArt();save();$('photo-dialog').close();}
+    try {
+      const photoArt=packPhoto();
+      if (!card.art || card.art==='pad') card.placement='all';
+      card.art=photoArt;clearFeedback();updateArt();save();$('photo-dialog').close();
+    }
     catch(error){$('photo-dialog').close();$('feedback').textContent=error.message;}
   });
   function giftLink() {

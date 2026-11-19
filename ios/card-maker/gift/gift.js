@@ -4,11 +4,12 @@
   try {
     const card=CardEdition.decode(location.hash);
     const theme=CardEdition.editions[card.theme];
+    const format=CardFormats.formats[card.format];
     const response=await fetch(theme.path);
-    if (!response.ok) throw Error('The disk sleeve could not be loaded. Reload to try again.');
+    if (!response.ok) throw Error('The sleeve could not be loaded. Reload to try again.');
     const template=new DOMParser().parseFromString(await response.text(),'text/html');
     const main=template.querySelector('main.folio'), letter=template.querySelector('#letter');
-    if (!main || !letter) throw Error('This disk sleeve is unavailable.');
+    if (!main || !letter) throw Error('This sleeve is unavailable.');
     const select=(selector)=>main.querySelector(selector);
     const sender=card.from || 'a friend';
     const forLine=card.to ? 'For ' + card.to : 'For you';
@@ -22,7 +23,31 @@
     if(card.theme==='cello') {
       const style=document.createElement('link');style.rel='stylesheet';style.href=theme.path+'edition.css';document.head.append(style);
     }
-    select('.edition').textContent='Personal edition';
+    const deck=select('#deck');
+    deck.dataset.motion=format.motion;
+    deck.dataset.busy=format.busy;
+    deck.dataset.loaded=card.format==='disk' ? 'Disk loaded' : 'Playing';
+    deck.setAttribute('aria-label',format.deck);
+    const deckTitle=select('.drive-title > span');
+    deckTitle.replaceChildren(deckTitle.querySelector('.lamp'),' '+format.deck);
+    const insert=select('#insert');
+    const icon=insert.querySelector('.insert-icon');
+    icon.textContent=['slide','feed'].includes(format.motion) ? '↑' : '▶';
+    insert.replaceChildren(icon,' '+format.play);
+    select('#ready-controls p').textContent=format.cue;
+    const medium=select('#disk');
+    medium.setAttribute('aria-label',format.play);
+    CardFormats.render(medium,card);
+    if (!['slide','feed'].includes(format.motion)) {
+      select('#eject').textContent='■  Stop';
+    }
+    if (CardEdition.includesArt(card,'cover')) {
+      const cover=select('.cover-art');
+      cover.classList.add('custom-cover');
+      cover.removeAttribute('aria-hidden');
+      CardEdition.displayArt(cover,card.art);
+    }
+    select('.edition').textContent=format.name+' edition';
     select('.eyebrow').removeAttribute('lang');
     select('.eyebrow').textContent=forLine;
     const dedication=select('.dedication');
@@ -39,7 +64,6 @@
       for (const link of main.querySelectorAll('#recording-link,.video-nav a')) link.href=trackUrl;
       select('#recording-link').dataset.title='Your chosen recording';
       select('#cover-title').replaceChildren('Side ',Object.assign(document.createElement('em'),{textContent:'A'}));
-      select('#disk').setAttribute('aria-label','Insert your musical disk');
     }
     const title=letter.querySelector('#letter-heading');
     title.replaceChildren('A note from ',Object.assign(document.createElement('em'),{textContent:sender}));
@@ -47,12 +71,12 @@
     letter.querySelector('.postmark').textContent=Array.from(sender)[0].toUpperCase();
     letter.querySelector('[data-default-art]')?.remove();
     const body=letter.querySelector('#letter-content');body.replaceChildren();body.classList.add('personal-letter');
-    const art=document.createElement('div');art.className='personal-art';CardEdition.displayArt(art,card.art);body.append(art);
-    const message=document.createElement('p');message.textContent=card.note || (card.art ? '' : heading);
+    const art=document.createElement('div');art.className='personal-art';CardEdition.displayArt(art,CardEdition.includesArt(card,'inside') ? card.art : '');body.append(art);
+    const message=document.createElement('p');message.textContent=card.note || (CardEdition.includesArt(card,'inside') ? '' : heading);
     if(message.textContent) body.append(message);
     main.hidden=true;
     document.body.append(main,letter);
-    const script=document.createElement('script');script.src='/harp-studies-71/card.js?edition=2';
+    const script=document.createElement('script');script.src='/harp-studies-71/card.js?edition=3';
     await new Promise((resolve,reject)=>{script.onload=resolve;script.onerror=()=>reject(Error('The player could not load. Reload to try again.'));document.head.append(script);});
     main.hidden=false;
     status.remove();

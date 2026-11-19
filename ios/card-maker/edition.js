@@ -7,7 +7,7 @@
   const padArt = '/cello-housewarming/assets/happy-new-pad.webp';
   const sizes = {to:40, from:40, greeting:60, note:480};
   function fresh(theme='cello') {
-    return {theme,to:'',from:'Adam',greeting:editions[theme].greeting,note:'',video:'',art:editions[theme].art};
+    return {theme,format:'disk',placement:'inside',to:'',from:'Adam',greeting:editions[theme].greeting,note:'',video:'',art:editions[theme].art};
   }
   function readVideo(input) {
     if (!input.trim()) return '';
@@ -24,8 +24,10 @@
     return id;
   }
   function clean(card) {
-    if (!card || !Object.hasOwn(editions,card.theme)) throw Error('Unknown disk.');
+    if (!card || !Object.hasOwn(editions,card.theme)) throw Error('Unknown sleeve.');
     const cleanCard = fresh(card.theme);
+    if (Object.hasOwn(CardFormats.formats, card.format)) cleanCard.format = card.format;
+    if (['all','cover','label','inside'].includes(card.placement)) cleanCard.placement = card.placement;
     for (const [key,max] of Object.entries(sizes)) cleanCard[key] = String(card[key] || '').trim().slice(0,max);
     cleanCard.video = /^[\w-]{11}$/.test(card.video || '') ? card.video : '';
     const art = card.art || '';
@@ -65,5 +67,8 @@
       container.append(img);
     }
   }
-  window.CardEdition=Object.freeze({editions,fresh,readVideo,clean,link,decode,displayArt});
+  function includesArt(card, surface) {
+    return Boolean(card.art) && (card.placement === 'all' || card.placement === surface);
+  }
+  window.CardEdition=Object.freeze({editions,fresh,readVideo,clean,link,decode,displayArt,includesArt});
 })();
