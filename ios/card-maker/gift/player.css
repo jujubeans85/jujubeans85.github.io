@@ -11,3 +11,8 @@
 @keyframes feed-roll{to{transform:translateY(-90%)}}
 @media(max-width:700px){.cover .cover-art.custom-cover{width:42%;height:65%;right:4%;bottom:3%}}
 @media(prefers-reduced-motion:reduce){.deck[data-state=reading] .carrier *{animation:none!important;transition:none!important}}
+.folio .dedication .signature{display:block;text-transform:none;letter-spacing:0;color:#37493c;font:italic clamp(17px,2.6vw,28px)/1.15 var(--serif);overflow-wrap:anywhere}
+.folio .dedication .signature:before{display:none}
+.cover-fallback{display:grid;width:100%;height:85%;align-content:end;padding:10%;background:repeating-linear-gradient(135deg,#2b5149 0 14px,#325d53 14px 16px);color:#fff5df;font:italic 1.35rem/1.2 Georgia,serif}
+
+.custom-cover .cover-carrier{display:block;width:90%;aspect-ratio:1}

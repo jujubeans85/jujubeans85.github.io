@@ -41,12 +41,10 @@
     if (!['slide','feed'].includes(format.motion)) {
       select('#eject').textContent='■  Stop';
     }
-    if (CardEdition.includesArt(card,'cover')) {
-      const cover=select('.cover-art');
-      cover.classList.add('custom-cover');
-      cover.removeAttribute('aria-hidden');
-      CardEdition.displayArt(cover,card.art);
-    }
+    const cover=select('.cover-art');
+    CardEdition.displayCover(cover,card);
+    cover.classList.toggle('custom-cover',cover.dataset.source!=='sleeve');
+    cover.removeAttribute('aria-hidden');
     select('.edition').textContent=format.name+' edition';
     select('.eyebrow').removeAttribute('lang');
     select('.eyebrow').textContent=forLine;
@@ -55,7 +53,7 @@
     const greeting=dedication.querySelector('p');
     greeting.removeAttribute('lang');greeting.textContent=heading;
     greeting.classList.toggle('long-greeting',heading.length>22);
-    const signature=select('.signature');signature.removeAttribute('lang');signature.textContent='From '+sender;
+    const signature=select('.signature');signature.removeAttribute('lang');signature.textContent=card.from;signature.hidden=!card.from;
     const button=select('#open-note');
     button.replaceChildren(button.querySelector('.envelope-icon'),' Your note');
     if (card.video) {
@@ -63,6 +61,7 @@
       const trackUrl='https://www.youtube.com/watch?v='+card.video;
       for (const link of main.querySelectorAll('#recording-link,.video-nav a')) link.href=trackUrl;
       select('#recording-link').dataset.title='Your chosen recording';
+      select('#cover-title').removeAttribute('lang');
       select('#cover-title').replaceChildren('Side ',Object.assign(document.createElement('em'),{textContent:'A'}));
     }
     const title=letter.querySelector('#letter-heading');

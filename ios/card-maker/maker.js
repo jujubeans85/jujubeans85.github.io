@@ -10,9 +10,11 @@
     const saved = JSON.parse(localStorage.getItem(storageKey));
     if (saved?.card) {
       card = clean(saved.card);
+      if (!saved.signatureUpdated && card.from==='Adam') card.from='Adman';
       // Previously loaded photos were only visible as a thumbnail in the editor.
       if (!saved.card.placement && card.art.startsWith('j')) card.placement = 'all';
-      musicInput = String(saved.musicInput || '').slice(0,1000);
+      musicInput = String(saved.musicInput ?? (card.video ? CardEdition.videoURL(card.video) : '')).slice(0,4000);
+      try {card.video=readVideo(musicInput);musicInput=card.video ? CardEdition.videoURL(card.video) : '';} catch {card.video='';}
     }
   } catch { /* A new card is usable with storage disabled. */ }
 
@@ -21,11 +23,11 @@
   }
 
   function save() {
-    try { localStorage.setItem(storageKey,JSON.stringify({card,musicInput})); }
+    try { localStorage.setItem(storageKey,JSON.stringify({card,musicInput,signatureUpdated:true})); }
     catch { $('feedback').textContent='Draft storage is unavailable on this device. Share or copy your card before closing.'; }
   }
   function clearFeedback() {
-    $('feedback').textContent='';$('manual').hidden=true;
+    $('feedback').textContent='';
   }
   function updateSleeve() {
     const theme=editions[card.theme];
@@ -34,11 +36,31 @@
     title.classList.toggle('long-title',title.textContent.length>26);
     $('hero-to').textContent=[card.to.trim() && 'For '+card.to.trim(),card.from.trim() && 'From '+card.from.trim()].filter(Boolean).join(' · ') || 'For you';
   }
+  const coverNames={recording:'Recording artwork',sleeve:'Sleeve illustration',photo:'Cover photo',art:'Card artwork'};
+  function updateCover() {
+    const front=$('cover-artwork');
+    CardEdition.displayCover(front,card);
+    $('cover-source-name').textContent=coverNames[front.dataset.source];
+    for (const option of document.querySelectorAll('[data-cover]')) {
+      option.setAttribute('aria-pressed',String(option.dataset.cover===card.coverSource));
+      if (option.dataset.cover==='art') option.disabled=!card.art;
+    }
+  }
+  function editCover() {
+    if ($('preview-dialog').open) $('preview-dialog').close();
+    $('cover-dialog').showModal();
+  }
+  $('edit-cover').addEventListener('click',editCover);
+  $('preview-cover').addEventListener('click',editCover);
+  for (const button of document.querySelectorAll('[data-cover]')) {
+    button.addEventListener('click',()=>{
+      card.coverSource=button.dataset.cover;card.coverPhoto='';
+      updateCover();save();$('cover-dialog').close();
+    });
+  }
   function updateArt() {
     displayArt($('sample'),card.art);
-    const front = CardEdition.includesArt(card,'cover');
-    displayArt($('cover-artwork'),front ? card.art : '');
-    $('sleeve-art').hidden = front;
+    updateCover();
     $('placement-row').hidden = !card.art;
     $('placement').value = card.placement;
     const sample = $('sample').firstElementChild;
@@ -58,7 +80,6 @@
     for(const field of fields) $(field).value=card[field];
     $('video').value=musicInput;
     $('format').value=card.format;
-    $('sleeve-art').src=theme.path+'assets/'+(card.theme==='cello' ? 'doorway.webp' : 'plate.webp');
     $('track-name').textContent=musicInput.trim() ? 'Your recording' : theme.track;
     updateSleeve();updateArt();
   }
@@ -69,7 +90,7 @@
   }
   $('format').addEventListener('change',()=>{
     card.format=$('format').value;
-    clearFeedback();CardFormats.render($('hero-medium'),card);save();
+    clearFeedback();updateCover();CardFormats.render($('hero-medium'),card);save();
   });
   $('placement').addEventListener('change',()=>{
     card.placement=$('placement').value;
@@ -82,12 +103,31 @@
     card.theme=$('theme').value;
     clearFeedback();render();save();
   });
-  $('video').addEventListener('input',()=>{
-    musicInput=$('video').value;
+  function updateVideo(normalise=false) {
+    const input=$('video');
+    musicInput=input.value;
+    let id='';
+    try {
+      id=readVideo(musicInput);
+      if (normalise) input.value=musicInput=id ? CardEdition.videoURL(id) : '';
+    } catch { /* Keep incomplete input editable until preview or sharing. */ }
+    const changed=id!==card.video;
+    card.video=id;
     $('track-name').textContent=musicInput.trim() ? 'Your recording' : editions[card.theme].track;
-    $('video').removeAttribute('aria-invalid');clearFeedback();
-    try {card.video=readVideo(musicInput);} catch {card.video='';}
-    CardFormats.render($('hero-medium'),card);save();
+    input.removeAttribute('aria-invalid');clearFeedback();
+    if (changed) {updateCover();CardFormats.render($('hero-medium'),card);}
+    save();
+  }
+  $('video').addEventListener('input',event=>updateVideo(event.inputType==='insertFromPaste' || event.inputType==='insertFromDrop'));
+  $('video').addEventListener('blur',()=>updateVideo(true));
+  $('video').addEventListener('paste',event=>{
+    const pasted=event.clipboardData?.getData('text/plain');
+    if (!pasted) return;
+    try {
+      const id=readVideo(pasted);
+      if (!id) return;
+      event.preventDefault();$('video').value=CardEdition.videoURL(id);updateVideo(true);
+    } catch { /* Native paste preserves the input for correction. */ }
   });
   $('remove-art').addEventListener('click',()=>{card.art='';clearFeedback();updateArt();save();});
 
@@ -105,11 +145,15 @@
   const photo=$('source-photo'), wrap=$('crop-wrap'), box=$('crop-box');
   let photoUrl='', crop=null, origin=null,photoVersion=0;
   function clearCrop() { crop=null;origin=null;box.hidden=true; }
-  $('photo').addEventListener('change',async()=>{
-    const file=$('photo').files[0];$('photo').value='';
+  let photoTarget='art';
+  async function loadPhoto(event) {
+    const input=event.currentTarget,file=input.files[0];input.value='';
     if (!file) return;
     clearFeedback();
     const version=++photoVersion;
+    photoTarget=input.id==='cover-photo' ? 'cover' : 'art';
+    if ($('cover-dialog').open) $('cover-dialog').close();
+    $('photo-dialog').querySelector('h2').textContent=photoTarget==='cover' ? 'Place cover photo' : 'Place photo';
     if(photoUrl)URL.revokeObjectURL(photoUrl);
     photoUrl=URL.createObjectURL(file);photo.src=photoUrl;
     try {
@@ -121,7 +165,8 @@
       URL.revokeObjectURL(photoUrl);photoUrl='';
       $('feedback').textContent='This picture could not be read. Try a screenshot, JPG or PNG.';
     }
-  });
+  }
+  $('photo').addEventListener('change',loadPhoto);$('cover-photo').addEventListener('change',loadPhoto);
   $('photo-dialog').addEventListener('close',()=>{
     ++photoVersion;if(photoUrl)URL.revokeObjectURL(photoUrl);photoUrl='';photo.removeAttribute('src');clearCrop();
   });
@@ -167,14 +212,22 @@
   $('use-photo').addEventListener('click',()=>{
     try {
       const photoArt=packPhoto();
-      if (!card.art || card.art==='pad') card.placement='all';
-      card.art=photoArt;clearFeedback();updateArt();save();$('photo-dialog').close();
+      if (photoTarget==='cover') {
+        card.coverSource='photo';card.coverPhoto=photoArt;
+      } else {
+        if (!card.art || card.art==='pad') card.placement='all';
+        card.art=photoArt;
+      }
+      clearFeedback();updateArt();save();$('photo-dialog').close();
     }
     catch(error){$('photo-dialog').close();$('feedback').textContent=error.message;}
   });
   function giftLink() {
     clearFeedback();
-    try {card.video=readVideo(musicInput);save();return link(card);}
+    try {
+      card.video=readVideo(musicInput);musicInput=card.video ? CardEdition.videoURL(card.video) : '';
+      $('video').value=musicInput;save();return link(card);
+    }
     catch(error) {
       if($('preview-dialog').open)$('preview-dialog').close();
       $('music').open=true;$('video').setAttribute('aria-invalid','true');$('feedback').textContent=error.message;$('video').focus();return '';
@@ -186,16 +239,38 @@
   }
   $('preview').addEventListener('click',preview);$('disc-preview').addEventListener('click',preview);
   $('preview-dialog').addEventListener('close',()=>{$('preview-frame').src='about:blank';});
-  async function share() {
-    const url=giftLink();if(!url)return;
-    if (navigator.share) {
-      try {await navigator.share({url});return;}
-      catch(error) {if(error.name==='AbortError')return;}
-    }
-    if ($('preview-dialog').open)$('preview-dialog').close();
-    try {await navigator.clipboard.writeText(url);$('feedback').textContent='Gift link copied. Paste it into Messages.';}
-    catch {$('manual').hidden=false;$('share-link').value=url;$('share-link').focus();$('share-link').select();$('feedback').textContent='Select and copy your gift link.';}
+  let shareURL='';
+  function share() {
+    shareURL=giftLink();if(!shareURL)return;
+    if ($('preview-dialog').open) $('preview-dialog').close();
+    const heading=card.greeting.trim() || editions[card.theme].greeting;
+    const name=card.to.trim(), sender=card.from.trim();
+    const play=CardFormats.formats[card.format].play;
+    $('caption').value=[name ? name+' — '+heading : heading,'Tap “'+play+'” for your song.'+(sender ? ' — '+sender : '')].join('\n');
+    const printURL=new URL('../print/',shareURL);printURL.hash=new URL(shareURL).hash;
+    $('print-link').href=printURL.href;
+    $('share-feedback').textContent='';$('manual-copy').hidden=true;
+    $('share-dialog').showModal();
   }
+  function messageText() {return [$('caption').value.trim(),shareURL].filter(Boolean).join('\n\n');}
+  async function copy(text,success) {
+    try {
+      await navigator.clipboard.writeText(text);
+      $('manual-copy').hidden=true;$('share-feedback').textContent=success;
+    } catch {
+      const field=$('manual-copy');field.value=text;field.hidden=false;field.focus();field.select();
+      $('share-feedback').textContent='Select and copy the text below.';
+    }
+  }
+  $('copy-message').addEventListener('click',()=>copy(messageText(),'Message and card link copied.'));
+  $('copy-link').addEventListener('click',()=>copy(shareURL,'Card link copied.'));
+  $('send-message').addEventListener('click',async()=>{
+    if (navigator.share) {
+      try {await navigator.share({text:$('caption').value.trim(),url:shareURL});return;}
+      catch(error){if(error.name==='AbortError')return;}
+    }
+    await copy(messageText(),'Message and card link copied.');
+  });
   $('share').addEventListener('click',share);$('preview-share').addEventListener('click',share);
   for(const button of document.querySelectorAll('[data-close]'))button.addEventListener('click',()=>button.closest('dialog').close());
   $('new').addEventListener('click',()=>$('new-dialog').showModal());

@@ -5,8 +5,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Card Press">
 <title>Card Press · Musikarchiv</title>
 <link rel="apple-touch-icon" href="/cello-housewarming/assets/touch.png"><link rel="icon" href="/cello-housewarming/assets/touch.png">
-<link rel="manifest" href="app.webmanifest"><link rel="stylesheet" href="maker.css?v=2">
-<script src="/harp-studies-71/note.js?press=1" defer></script><link rel="stylesheet" href="formats.css?v=2"><script src="formats.js?v=2" defer></script><script src="edition.js?v=2" defer></script><script src="maker.js?v=2" defer></script>
+<link rel="manifest" href="app.webmanifest"><link rel="stylesheet" href="maker.css?v=3">
+<script src="/harp-studies-71/note.js?press=1" defer></script><link rel="stylesheet" href="formats.css?v=2"><script src="formats.js?v=2" defer></script><script src="edition.js?v=3" defer></script><script src="maker.js?v=3" defer></script>
 </head><body>
 <header class="top"><a class="brand" href="./" aria-label="Card Press home"><span aria-hidden="true">✳</span> Musikarchiv</a><button id="new" type="button">New card <b aria-hidden="true">＋</b></button></header>
 <main class="workbench">
@@ -14,9 +14,8 @@
   <div class="sleeve-paper">
     <span class="imprint">Card Press</span>
     <h1 id="hero-title">Welcome home!</h1>
-    <div class="hero-to" id="hero-to">From Adam</div>
-    <span id="cover-artwork" class="cover-artwork" hidden></span>
-    <img class="sleeve-art" id="sleeve-art" alt="" src="/cello-housewarming/assets/doorway.webp">
+    <div class="hero-to" id="hero-to">From Adman</div>
+    <span id="cover-artwork" class="cover-artwork"></span>
   </div>
   <button class="record" id="disc-preview" type="button" aria-label="Preview this musical card"><span id="hero-medium"></span></button>
 </section>
@@ -26,8 +25,9 @@
     <label for="theme">Sleeve<select id="theme"><option value="cello">Island cello</option><option value="harp">Garden harp</option></select></label>
   </div>
   <div class="form">
-    <div class="people"><label>To<input id="to" maxlength="40" placeholder="Their name" autocomplete="off" enterkeyhint="next"></label><label>From<input id="from" maxlength="40" value="Adam" autocomplete="off" enterkeyhint="next"></label></div>
+    <div class="people"><label>To<input id="to" maxlength="40" placeholder="Their name" autocomplete="off" enterkeyhint="next"></label><label>From<input id="from" maxlength="40" value="Adman" autocomplete="off" enterkeyhint="next"></label></div>
     <label>On the cover<input id="greeting" maxlength="60" value="Welcome home!" enterkeyhint="next"></label>
+    <div class="picture-row"><button id="edit-cover" type="button">Change cover image</button><span id="cover-source-name"></span></div>
     <label>Inside the card<textarea id="note" rows="2" maxlength="480" placeholder="A few words in your own voice…"></textarea></label>
     <div class="art-row">
       <div class="sample" id="sample" hidden></div>
@@ -50,7 +50,7 @@
       <p class="hint">Leave blank to use the sleeve’s recording.</p>
     </details>
     <p id="feedback" role="status"></p>
-    <div id="manual" hidden><label>Copy your finished gift link<input id="share-link" readonly></label></div>
+
   </div>
   <div class="bar"><button type="button" class="secondary" id="preview">Preview</button><button type="button" class="primary" id="share">Share card</button></div>
 </section></main>
@@ -58,11 +58,25 @@
 <p class="hint">Use your finger or Apple Pencil.</p>
 <canvas id="pad" width="720" height="400" aria-label="Handwriting pad" role="img"></canvas>
 <p class="hint" id="ink-feedback" role="status"></p><div class="sheet-actions"><button class="secondary" id="undo" type="button" disabled>Undo</button><button id="use-ink" class="primary" type="button">Use handwriting</button></div></div></dialog>
+<dialog id="cover-dialog"><div class="sheet"><div class="sheet-head"><h2>Cover image</h2><button class="close" type="button" data-close aria-label="Close cover choices">×</button></div>
+<div class="cover-options">
+  <button type="button" data-cover="auto">Automatic</button>
+  <button type="button" data-cover="recording">Recording artwork</button>
+  <button type="button" data-cover="art">Use card artwork</button>
+  <button type="button" data-cover="sleeve">Sleeve illustration</button>
+  <label class="file-button">Choose cover photo…<input type="file" id="cover-photo" accept="image/*" aria-label="Choose a separate cover photo"></label>
+</div></div></dialog>
+<dialog id="share-dialog"><div class="sheet"><div class="sheet-head"><h2>Share card</h2><button type="button" class="close" data-close aria-label="Close sharing">×</button></div>
+<label for="caption">Ready-to-send message</label><textarea id="caption" rows="3"></textarea>
+<p class="hint">Your card link goes underneath.</p>
+<div class="share-actions"><button class="primary" id="send-message" type="button">Share message</button><button class="secondary" id="copy-message" type="button">Copy message</button><a id="print-link" target="_blank" rel="noopener">Print / Save PDF</a><button id="copy-link" type="button">Copy link only</button></div>
+<p id="share-feedback" role="status"></p><textarea id="manual-copy" aria-label="Select and copy" readonly hidden></textarea>
+</div></dialog>
 <dialog id="photo-dialog"><div class="sheet"><div class="sheet-head"><h2>Place photo</h2><button class="close" type="button" data-close aria-label="Cancel photo">×</button></div>
 <p class="hint">Drag across the part to keep, or use the whole picture.</p>
 <div class="crop-wrap" id="crop-wrap"><img id="source-photo" alt="Photo to crop" draggable="false"><span id="crop-box" hidden></span></div>
 <div class="sheet-actions"><button class="secondary" id="full-photo" type="button">Whole photo</button><button class="primary" id="use-photo" type="button">Use photo</button></div></div></dialog>
-<dialog id="preview-dialog"><div class="preview-tools"><button type="button" data-close>Back to editing</button><button class="primary" id="preview-share" type="button">Share card</button></div>
+<dialog id="preview-dialog"><div class="preview-tools"><button type="button" data-close>Back to editing</button><button id="preview-cover" type="button">Change image</button><button class="primary" id="preview-share" type="button">Share card</button></div>
 <iframe id="preview-frame" title="Recipient’s view of your card" allow="autoplay; fullscreen"></iframe></dialog>
 <dialog id="new-dialog"><div class="sheet"><h2>Start a new card?</h2><p>Your current draft will be replaced. Gift links you’ve shared still work.</p><div class="sheet-actions"><button type="button" class="secondary" data-close>Keep editing</button><button type="button" class="primary" id="reset">Start fresh</button></div></div></dialog>
 <noscript><p>This card maker needs JavaScript. Open it in Safari to edit a card.</p></noscript>
