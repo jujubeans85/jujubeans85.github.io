@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#231b33"><meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A Kang and Kodos animated short with a one-button tractor-beam arcade.">
+<title>The Great Cake Abduction</title>
+<link rel="icon" href="data:,"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<section id="lobby" class="view" aria-labelledby="title">
+<div class="premiere">
+  <div class="premiere-art" aria-hidden="true"></div><div class="light-sweep" aria-hidden="true"></div>
+  <div class="front-copy">
+    <p id="dedication">A birthday transmission</p>
+    <h1 id="title"><span>The Great</span>Cake<br>Abduction</h1>
+    <div class="actions"><button id="screen-film" class="primary"><span class="playmark" aria-hidden="true"></span>Play the short</button><button id="arcade-entry" class="quiet">Play the arcade</button></div>
+  </div>
+</div>
+</section>
+<section id="cinema" class="view" hidden aria-label="The Great Cake Abduction, animated short">
+  <div class="filmframe" id="filmframe">
+    <video id="film" playsinline webkit-playsinline preload="none" poster="marquee.webp" aria-label="The Great Cake Abduction, with dialogue captions"></video>
+    <div id="film-name" aria-hidden="true"></div><div id="film-from" aria-hidden="true"></div>
+    <button id="back-film" class="corner film-corner" aria-label="Return to premiere">‹ <span>Premiere</span></button>
+    <div class="transport"><button id="pause" aria-label="Pause film">Pause</button><button id="sound" aria-label="Mute film">Sound on</button></div>
+    <div id="film-error" hidden><p>The film couldn’t start on this connection.</p><button id="retry-film" class="primary">Try again</button><button id="error-arcade" class="quiet">Play the arcade</button></div>
+  </div>
+</section>
+<section id="game" class="view" hidden aria-labelledby="game-head">
+  <div id="cabinet">
+    <div class="game-art" aria-hidden="true"></div>
+    <button id="back-game" class="corner" aria-label="Return to premiere">‹ <span>Premiere</span></button>
+    <div class="game-title"><p>Kodos’ tractor beam</p><h2 id="game-head">Just the cake.</h2><p id="instructions">Beam up the cake when the saucer lines up.</p></div>
+    <div class="field" id="field" aria-hidden="true"><div class="sight" id="sight"></div><div class="beam" id="beam"></div><div class="sprite saucer" id="ship"></div><div class="targets" id="targets"></div><div class="lift sprite" id="lift"></div><div class="flash" id="flash"></div></div>
+    <div class="control-deck">
+      <div id="game-message" role="status" aria-live="polite"></div>
+      <div class="controls" id="game-controls"><button class="nudge" id="left" aria-label="Aim one target left">‹</button><button class="primary" id="fire">Fire beam</button><button class="nudge" id="right" aria-label="Aim one target right">›</button></div>
+      <button id="game-next" class="primary" hidden>Fly again</button><button id="from-game-film" class="quiet">Watch the film</button>
+    </div>
+  </div>
+</section>
+<section id="encore" class="view" hidden aria-labelledby="encore-head"><div class="finish">
+  <div class="finish-art" aria-hidden="true"></div><div class="finish-copy">
+  <p>After the credits</p><h2 id="encore-head">Your turn<span>.</span></h2>
+  <p>Take Kodos’ controls. See if you can bring home just the cake.</p>
+  <button id="encore-play" class="primary">Take the controls</button><button id="replay" class="quiet">Replay the short</button></div>
+</div></section>
+<noscript><p><a href="feature.mp4">Play the birthday film</a></p></noscript>
+</main>
+<script src="app.js" defer></script>
+</body>
+</html>
