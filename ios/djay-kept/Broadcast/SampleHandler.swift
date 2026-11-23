@@ -6,6 +6,7 @@ final class SampleHandler: RPBroadcastSampleHandler {
     private let queue = DispatchQueue(label: "com.cratejuice.kept.capture")
     private let finishing = DispatchGroup()
     private var session: CaptureSession?
+    private var lease: CaptureLease?
     private var gate = SilenceGate(start: ProcessInfo.processInfo.systemUptime)
     private var timer: DispatchSourceTimer?
     private var writer: AVAssetWriter?
@@ -22,7 +23,10 @@ final class SampleHandler: RPBroadcastSampleHandler {
                 let now = Date()
                 session = CaptureSession(id: UUID().uuidString, started: now, heartbeat: now,
                                          state: "recording", reason: "", parts: [])
-                try SessionStore.write(session!)
+                if let session {
+                    lease = try CaptureLease(folder: SessionStore.directory(session.id))
+                    try SessionStore.write(session)
+                }
                 gate = SilenceGate(start: ProcessInfo.processInfo.systemUptime)
                 let timer = DispatchSource.makeTimerSource(queue: queue)
                 timer.schedule(deadline: .now() + 1, repeating: 1)
@@ -142,6 +146,7 @@ final class SampleHandler: RPBroadcastSampleHandler {
                         identifier: session.id, content: content, trigger: nil))
                 }
             } catch { self.session?.reason = error.localizedDescription }
+            self.lease = nil
             if terminate {
                 // ReplayKit exposes error termination to upload extensions. iPadOS may show
                 // a stopped-broadcast banner. The finalized local audio remains available.

@@ -2,6 +2,17 @@ import XCTest
 @testable import DjayKept
 
 final class SilenceGateTests: XCTestCase {
+    func testLiveCaptureLockBlocksReviewUntilReleased() throws {
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        var lease: CaptureLease? = try CaptureLease(folder: folder)
+        XCTAssertNotNil(lease)
+        XCTAssertEqual(CaptureLease.isHeld(in: folder), true)
+        XCTAssertThrowsError(try CaptureLease(folder: folder))
+        lease = nil
+        XCTAssertEqual(CaptureLease.isHeld(in: folder), false)
+    }
+
     func testTwoHourSessionDoesNotTimeOutWhileMusicPlays() {
         var gate = SilenceGate(start: 0)
         for second in 0...10800 {
