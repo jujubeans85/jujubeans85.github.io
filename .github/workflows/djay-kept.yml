@@ -1,0 +1,37 @@
+name: DJAY Kept native checks
+on:
+  pull_request:
+    paths: ['ios/djay-kept/**', '.github/workflows/djay-kept.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - name: Generate Xcode project
+        working-directory: ios/djay-kept
+        run: xcodegen generate
+      - name: Select simulator
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          devices = json.loads(subprocess.check_output(['xcrun','simctl','list','devices','available','-j']))
+          phones = [d for runtime, values in devices['devices'].items() if 'iOS' in runtime for d in values if 'iPhone' in d['name']]
+          with open(os.environ['GITHUB_ENV'], 'a') as f:
+              f.write('SIMULATOR_ID=' + phones[0]['udid'] + '\n')
+          PY
+      - name: Build app and broadcast extension, run silence regression tests
+        working-directory: ios/djay-kept
+        run: >-
+          xcodebuild test -project DjayKept.xcodeproj -scheme DjayKept
+          -destination "platform=iOS Simulator,id=$SIMULATOR_ID"
+          -resultBundlePath TestResults CODE_SIGNING_ALLOWED=NO
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: djay-kept-test-results
+          path: ios/djay-kept/TestResults.xcresult
