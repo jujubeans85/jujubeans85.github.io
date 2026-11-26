@@ -4,7 +4,7 @@ Same heart. Brighter days.
 
 30 October–26 November 2026 · 8:00 am Australia/Sydney
 
-Final day: Friday 27 November 2026, 5:00 pm Sydney.
+Final day: Friday 27 November 2026, 10:00 pm Sydney.
 
 10 checked odd facts + 18 original Dad quotes. Every note ends with LUV YA !😀💛.
 

@@ -21,7 +21,7 @@ const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Love Dad//CHLO 28 Days
   'BEGIN:VTIMEZONE','TZID:Australia/Sydney','X-LIC-LOCATION:Australia/Sydney',
   'BEGIN:DAYLIGHT','DTSTART:20261004T020000','TZOFFSETFROM:+1000','TZOFFSETTO:+1100','TZNAME:AEDT','END:DAYLIGHT',
   'BEGIN:STANDARD','DTSTART:20270404T030000','TZOFFSETFROM:+1100','TZOFFSETTO:+1000','TZNAME:AEST','END:STANDARD','END:VTIMEZONE'];
-let sheet = '# CHLO · 28 daily notes from Dad ♡\n\n' + data.tagline + '\n\n30 October–26 November 2026 · 8:00 am Australia/Sydney\n\nFinal day: Friday 27 November 2026, 5:00 pm Sydney.\n\n10 checked odd facts + 18 original Dad quotes. Every note ends with LUV YA !😀💛.\n\n';
+let sheet = '# CHLO · 28 daily notes from Dad ♡\n\n' + data.tagline + '\n\n30 October–26 November 2026 · 8:00 am Australia/Sydney\n\nFinal day: Friday 27 November 2026, 10:00 pm Sydney.\n\n10 checked odd facts + 18 original Dad quotes. Every note ends with LUV YA !😀💛.\n\n';
 const smsByDate = {};
 for (let i=0; i<data.messages.length; i++) {
   const message = data.messages[i], days = 28-i, key = daily.keyForDay(daily.startDay+i), date = key.replaceAll('-','');
@@ -45,9 +45,10 @@ fs.writeFileSync(path.join(__dirname,'chlo-28-messages.md'), sheet);
 const feedPath = path.join(__dirname, 'chlo-sms-by-date.json');
 const finishKey = daily.keyForDay(daily.finishDay);
 const published = fs.existsSync(feedPath) ? JSON.parse(fs.readFileSync(feedPath, 'utf8')) : {};
-// The countdown owns dates before graduation; later editions use the same phone URL.
+smsByDate[finishKey] = data.lastShiftMessage + '\n\n' + data.signoff;
+// Message Desk owns the dates after graduation and uses the same phone URL.
 for (const [key, text] of Object.entries(published)) {
-  if (key >= finishKey) smsByDate[key] = text;
+  if (key > finishKey) smsByDate[key] = text;
 }
 fs.writeFileSync(feedPath, JSON.stringify(smsByDate, null, 2) + '\n');
 console.log('Built date-keyed SMS feed, 28 calendar events with alarms and the complete message sheet.');

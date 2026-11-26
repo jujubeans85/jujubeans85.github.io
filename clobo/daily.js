@@ -17,8 +17,13 @@
   function stateAt(date) {
     var day = ordinal(localKey(date)), index = day - start;
     if (index < 0) return {phase:'before', index:0, days:28, dateKey:keyForDay(start), message:data.messages[0]};
+    if (day === finish && date.getTime() < Date.parse(data.graduationAt)) {
+      var evening = date.getTime() >= Date.parse(data.eveningAt);
+      return {phase:evening ? 'evening' : 'lastShift', index:data.messages.length, days:0, dateKey:keyForDay(day), message:{kind:'quote', text:evening ? data.eveningMessage : data.lastShiftMessage}};
+    }
     if (day >= finish) {
       var text = data.graduationMessage;
+      if (day === finish) text = data.clockOffMessage + '\n\n' + text;
       if (day === finish && data.graduationDayPostscript) text += '\n\n' + data.graduationDayPostscript;
       return {phase:'finished', index:28, days:0, dateKey:keyForDay(finish), message:{kind:'quote', text:text}};
     }
@@ -31,18 +36,21 @@
     function el(id) { return doc.getElementById(id); }
     var lastKey = '';
     function render() {
-      var key = localKey(new Date());
+      var now = new Date(), state = stateAt(now);
+      var key = localKey(now) + '/' + state.phase;
       if (key === lastKey) return;
       lastKey = key;
-      var state = stateAt(new Date());
       el('daily-label').textContent = state.phase === 'before' ? 'YOUR FIRST DOSE · ' + dateLabel(state.dateKey).toUpperCase() : state.phase === 'finished' ? 'YOUR BIG DAY ♡' : state.days + (state.days === 1 ? ' DAY' : ' DAYS') + ' TO GO · ' + dateLabel(state.dateKey).toUpperCase();
       el('daily-note').textContent = state.message.text;
+      var onShift = state.phase === 'lastShift' || state.phase === 'evening';
+      if (onShift) el('daily-label').textContent = 'YOUR LAST SHIFT ♡';
       el('daily-kind').textContent = state.message.kind === 'fact' ? 'Odd fact. Proud Dad.' : 'An original Dad thought.';
       var source = state.message.source;
       el('daily-source').hidden = !source;
       if (source) { el('daily-source').href = source.url; el('daily-source').textContent = 'Fact check · ' + source.label; }
       el('daily-footnote').textContent = state.phase === 'before' ? '28 little notes. One each day from 30 October.' : state.phase === 'finished' ? 'Same heart. Brighter days. Always your Dad.' : 'A new note each Sydney day. All the love, every day.';
       var count = state.phase === 'before' ? 0 : Math.min(state.index, data.messages.length);
+      if (onShift) el('daily-footnote').textContent = data.signoff;
       el('daily-archive').hidden = count === 0;
       el('daily-archive-list').replaceChildren();
       for (var i = count - 1; i >= 0; i--) {
