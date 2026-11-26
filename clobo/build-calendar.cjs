@@ -51,4 +51,13 @@ for (const [key, text] of Object.entries(published)) {
   if (key > finishKey) smsByDate[key] = text;
 }
 fs.writeFileSync(feedPath, JSON.stringify(smsByDate, null, 2) + '\n');
+// The extra iPhone runs use a separate dictionary keyed by the Sydney date and hour.
+const localHour = new Intl.DateTimeFormat('en-AU', {timeZone:data.timezone, hour:'2-digit', hourCycle:'h23'});
+const extraSms = {};
+for (const [when, message] of [[data.eveningAt, data.eveningMessage], [data.graduationAt, data.clockOffMessage]]) {
+  const time = new Date(when);
+  const key = daily.localKey(time) + ' ' + localHour.format(time);
+  extraSms[key] = message + '\n\n' + data.signoff;
+}
+fs.writeFileSync(path.join(__dirname, 'chlo-sms-by-hour.json'), JSON.stringify(extraSms, null, 2) + '\n');
 console.log('Built date-keyed SMS feed, 28 calendar events with alarms and the complete message sheet.');
