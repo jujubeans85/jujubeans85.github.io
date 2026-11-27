@@ -1,6 +1,6 @@
 // Bump this revision when replacing any app-shell asset.
 const prefix = 'hit-the-road-juice:' + self.registration.scope + ':';
-const cacheName = prefix + '2026-11-27-1';
+const cacheName = prefix + '2026-11-27-2';
 const files = [
   './index.html', './style.css', './routes.js', './app.js', './offline.js',
   './cover.jpg', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png'
