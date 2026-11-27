@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#20160f">
+  <meta name="description" content="Juice’s NSW trip planner. Start at Coles Toukley, pick a place, and plan the trip out or home.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hit The Road Juice">
+  <title>Hit The Road Juice</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-180.png">
+  <link rel="icon" href="./icon-192.png" type="image/png">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./routes.js"></script>
+  <script defer src="./offline.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#places">Skip to places</a>
+  <div class="wallpaper" aria-hidden="true"></div>
+  <header class="masthead">
+    <div class="inner topbar">
+      <a class="brand" href="#top" aria-label="Hit The Road Juice, top"><span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M4 25 11 8h5L10 25Zm12 0 7-17h5l-6 17Z" fill="currentColor"/></svg></span>Juice <b>Roadbook</b></a>
+      <nav class="desktop-nav" aria-label="Planner navigation">
+        <button type="button" data-nav="places" aria-pressed="true">Places</button>
+        <button type="button" data-nav="saved" aria-pressed="false">Saved</button>
+        <button type="button" data-nav="trip" aria-pressed="false">My trip</button>
+      </nav>
+      <button type="button" class="install-control compact" id="install"><span data-icon="install"></span>Install app</button>
+    </div>
+  </header>
+  <main class="inner" id="top">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-copy">
+        <div class="region"><span class="region-rule"></span> NSW TRIP PLANNER</div>
+        <h1 id="title">Hit The Road <em>Juice</em></h1>
+      </div>
+      <div class="origin-box">
+        <span class="home-symbol" data-icon="pin"></span>
+        <div class="origin-copy"><span class="label">Starting point</span><strong id="start-label">Coles Toukley</strong><span id="start-note">Toukley, NSW</span></div>
+        <button type="button" class="compact change" id="change-start" aria-haspopup="dialog"><span data-icon="edit"></span>Change</button>
+      </div>
+    </section>
+    <noscript>Enable JavaScript to choose places and build a trip.</noscript>
+    <div class="workspace">
+      <section class="places panel" id="places" aria-labelledby="places-title">
+        <div class="panel-head">
+          <div><h2 id="places-title">Places</h2><p class="panel-caption" id="place-count" aria-live="polite"></p></div>
+          <button type="button" class="compact shuffle" id="shuffle"><span data-icon="shuffle"></span>Surprise me</button>
+        </div>
+        <div class="search"><span data-icon="search"></span><input id="search" type="search" placeholder="Find a place" aria-label="Find a place" autocomplete="off"></div>
+        <div class="filters" id="filters" aria-label="Filter places"></div>
+        <div class="place-grid" id="place-list"></div>
+        <button type="button" class="more" id="show-more" hidden>Show more places</button>
+      </section>
+      <section class="trip panel" id="trip" aria-labelledby="trip-title" tabindex="-1">
+        <div class="panel-head"><div><h2 id="trip-title">My trip</h2></div><button class="compact" id="go-home" type="button"><span data-icon="home"></span>Head home</button></div>
+        <div class="itinerary">
+          <div class="journey-point"><i class="path-origin" aria-hidden="true"></i><div><span class="label">From</span><strong id="trip-from"></strong></div></div>
+          <button type="button" id="reverse" class="swap" aria-label="Reverse trip" title="Reverse trip"><span data-icon="swap"></span></button>
+          <div class="journey-point"><i class="path-dest" aria-hidden="true"></i><div><span class="label">To</span><strong id="trip-to"></strong></div></div>
+        </div>
+        <div class="modes" aria-label="Travel mode">
+          <button type="button" data-mode="drive"><span data-icon="car"></span>Drive</button>
+          <button type="button" data-mode="transit"><span data-icon="train"></span>Transit</button>
+          <button type="button" data-mode="boat"><span data-icon="boat"></span>Boat</button>
+        </div>
+        <div class="route-result" aria-live="polite"><span class="label" id="result-label">Journey estimate</span><strong id="estimate"></strong><p id="route-detail"></p></div>
+        <a class="directions" id="directions" target="_blank" rel="noopener noreferrer"><span data-icon="navigate"></span><span id="directions-text">Open directions</span><span class="external-icon" data-icon="external"></span></a>
+        <details id="leg-info"><summary>Route details</summary><ol id="legs"></ol></details>
+      </section>
+    </div>
+    <details class="sources"><summary>Timing sources</summary><ul id="source-list"></ul></details>
+    <footer><span>Hit The Road Juice</span><div><button type="button" id="motion" aria-pressed="true">Motion on</button><button type="button" id="backup"><span data-icon="download"></span>Save offline copy</button></div></footer>
+  </main>
+  <nav class="mobile-nav" aria-label="Mobile planner navigation">
+    <button type="button" data-nav="places" aria-pressed="true"><span data-icon="grid"></span>Places</button>
+    <button type="button" data-nav="saved" aria-pressed="false"><span data-icon="heart"></span>Saved</button>
+    <button type="button" data-nav="trip" aria-pressed="false"><span data-icon="route"></span>My trip</button>
+  </nav>
+  <dialog class="sheet" id="start-dialog" aria-labelledby="start-title">
+    <div class="sheet-inner"><header><h2 id="start-title">Starting point</h2><button type="button" class="round" data-close aria-label="Close starting points"><span data-icon="x"></span></button></header>
+      <form id="origin-form"><label for="origin-q">Choose a place or enter an address</label><div class="search"><span data-icon="search"></span><input id="origin-q" placeholder="Place or street address" maxlength="250" autocomplete="off"></div>
+      <button id="use-custom" class="custom-action" type="submit" hidden>Use this address</button></form>
+      <div class="origin-list" id="origin-list"></div>
+    </div>
+  </dialog>
+  <dialog class="sheet" id="install-dialog" aria-labelledby="install-title">
+    <div class="sheet-inner"><header><h2 id="install-title">Install app</h2><button type="button" class="round" data-close aria-label="Close install instructions"><span data-icon="x"></span></button></header>
+      <p>On iPhone or iPad, open this page in Safari, tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>. Tap <strong>More</strong> if the action is hidden.</p><p>On other devices, use your browser’s install or add-to-home-screen option.</p>
+      <p>Saved places and trip details are available offline after the first complete load. Live directions need a connection.</p>
+    </div>
+  </dialog>
+  <div class="toast" role="status" id="notice" hidden></div>
+</body>
+</html>
